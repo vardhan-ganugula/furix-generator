@@ -1,9 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 import { LogIn, Menu } from "lucide-react";
 
-import { Poppins } from "next/font/google";
 import {
   Sheet,
   SheetContent,
@@ -11,31 +10,18 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../sheet";
-
-
-const poppins = Poppins({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
-
+} from "../ui/sheet";
 
 function Header() {
   return (
     <>
-      <header className="w-full py-2 flex justify-around items-center bg-white text-black" style={{
-            fontFamily: poppins.style.fontFamily,
-            fontWeight: poppins.style.fontWeight,
-          }}>
+      <header className="shadow w-full py-2 flex justify-around items-center bg-white text-black font-poppins">
         <div>
-          <h2 className="text-2xl font-bold" style={{
-            fontFamily: "var(--font-geist-mono)",
-          }}>Furix.</h2>
+          <h2 className="text-2xl font-bold font-geist-mono"><Link href='/'>Furix.</Link></h2>
         </div>
-        
+
         <div>
-          <ul className="md:flex gap-2 hidden text-sm text-zinc-700" 
-          >
+          <ul className="md:flex gap-2 hidden text-sm text-zinc-700 font-poppins">
             <li className="nav_li">
               <Link href="/">Home</Link>
             </li>
@@ -71,13 +57,14 @@ function Header() {
               </SheetContent>
             </Sheet>
           </div>
-
-          <Button className="rounded-full bg-white shadow-none text-black hover:bg-black hover:text-white">
-            Sign In
-          </Button>
-          <Button variant="default" className="rounded-full">
-            Sign Up
-          </Button>
+          <div className="font-poppins flex gap-2">
+            <Button className="rounded-full text-xs bg-white shadow-none text-black hover:bg-black hover:text-white">
+              Sign In
+            </Button>
+            <Button variant="default" className="rounded-full text-xs">
+              Sign Up
+            </Button>
+          </div>
         </div>
       </header>
     </>

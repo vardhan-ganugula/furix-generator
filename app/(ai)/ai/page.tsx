@@ -2,7 +2,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div className='p-5 font-poppins'>page</div>
+    <div>page</div>
   )
 }
 

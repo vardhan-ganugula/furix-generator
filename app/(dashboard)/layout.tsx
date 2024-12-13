@@ -1,11 +1,11 @@
-import Footer from '@/components/ui/reusable/Footer'
-import Header from '@/components/ui/reusable/Header'
+import Footer from '@/components/reusable/Footer'
+import DashboardHeader from '@/components/reusable/DashboardHeader'
 import React from 'react'
 
 function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <>
-    <Header />
+    <DashboardHeader />
         {children}
     <Footer />
     </>

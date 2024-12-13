@@ -1,6 +1,6 @@
 import React from 'react'
-import HomeMain from '@/components/ui/reusable/HomeMain'
-import HomeDescription from '@/components/ui/reusable/HomeDescription'
+import HomeMain from '@/components/reusable/HomeMain'
+import HomeDescription from '@/components/reusable/HomeDescription'
 
 function page() {
   return (

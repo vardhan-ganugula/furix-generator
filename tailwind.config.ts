@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import {fontFamily} from 'tailwindcss/defaultTheme'
 
 export default {
     darkMode: ["class"],
@@ -65,7 +66,7 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		fontFamily: {
-			'poppins': ['Poppins', 'sans-serif'],
+			'poppins': ['var(--font-poppins)', ...fontFamily.sans],
 			'geist-sans': 'var(--font-geist-sans)',
 			'geist-mono': 'var(--font-geist-mono)',
 			'funnel-display': ['Funnel Display', 'serif']

@@ -1,6 +1,6 @@
 'use server'
 import React from 'react'
-import { Button } from '../button'
+import { Button } from '../ui/button'
 import Insta from '@/public/social/insragram.svg' 
 import Linkedin from '@/public/social/linkedin.jpg';
 import Threads from '@/public/social/threads.webp';

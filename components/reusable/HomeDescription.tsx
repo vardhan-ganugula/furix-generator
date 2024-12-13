@@ -24,7 +24,7 @@ import {
 
 import { aiTopics } from "@/constants/aiFeatures";
 import Link from "next/link";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 const aiIcons = [
   FileCode,
