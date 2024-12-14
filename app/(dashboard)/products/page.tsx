@@ -1,8 +1,8 @@
 import React from 'react'
-
+import ProductPageMain from '@/components/reusable/ProductPageMain'
 function page() {
   return (
-    <div className='p-5 font-poppins'>page</div>
+    <ProductPageMain/>
   )
 }
 

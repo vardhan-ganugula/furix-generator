@@ -23,7 +23,7 @@ import {
 function DashboardHeader() {
   return (
     <>
-      <header className="shadow w-full py-2 flex justify-around items-center bg-white text-black ">
+      <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black ">
         <div>
           <h2 className="text-2xl font-bold font-geist-mono"><Link href='/'>Furix.</Link></h2>
         </div>
