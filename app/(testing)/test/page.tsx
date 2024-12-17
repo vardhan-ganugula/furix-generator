@@ -1,27 +1,41 @@
-'use client'
-import axios from 'axios'
+'use client';
 import React from 'react'
+import {generateTextAction} from '@/actions/ai'
 import markdownParser from '@/helpers/markdownParser'
+
 function page() {
-  const [state, setState] = React.useState('')
-  async function getResponse () {
-    const res = await axios.get('/api/v1/cold-emailing-ideas')
-    const data = await res.data.answer
-    parseDown(data)
-  }
-  async function parseDown(data: string) {
-    const parsedData = await markdownParser(data);
-    setState(parsedData)
+  const [text, setText] = React.useState('');
+  const [topic, setTopic] = React.useState('');
+  const handleGenerateText = async () => {
+    try {
+      const response = await generateTextAction(topic);
+      const reader = response.getReader();
+      const decoder = new TextDecoder();
+      let text = '';
+      let done = false;
+      while (!done){
+        const {value, done: doneValue} = await reader.read();
+        text += decoder.decode(value);
+        done = doneValue; 
+        setText(prev => prev + markdownParser(text));
+      }
+    } catch (error) {
+      console.error('Error generating text:', error);
+      setText('Error generating text ' + error);
+    }
   }
   return (
-    <>
-    
-        <div>
-          <button onClick={getResponse}>Get Response</button>
-          <div dangerouslySetInnerHTML={{__html: state}}></div>
-        </div>
-    
-    </>
+    <div>
+
+      <div dangerouslySetInnerHTML={{__html: text}}>
+      </div>
+      <input type="text" value={topic} onChange={(e) => setTopic(e.target.value)}/>
+      <button onClick={handleGenerateText}>
+        Generate Text
+      </button>
+
+
+    </div>
   )
 }
 
