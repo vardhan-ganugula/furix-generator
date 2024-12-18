@@ -17,3 +17,5 @@ tbody tr:nth-child(even) {
 th, td {
     @apply border px-4 py-2;
 }
+
+

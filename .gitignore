@@ -39,4 +39,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-app/(testing)
+app/(testing)/* 
+app\(testing)\*
