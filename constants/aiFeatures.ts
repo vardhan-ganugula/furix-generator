@@ -1,34 +1,50 @@
+import {
+    Lightbulb,
+    Search,
+    ChartNoAxesCombined,
+    WandSparklesIcon,
+    AtSign,
+    Activity,
+    Megaphone
+  } from "lucide-react";
 const aiTopics = [
     {
-        title: 'Blog Generation',
-        url: '/ai/blog-generation',
-        description: 'Generate blog posts on various topics using AI.'
+        title: 'Case Study for Marketing',
+        url: '/ai/case-study-marketing',
+        icon: Megaphone,
+        description: 'Generate an effective marketing case study using AI.'
     },
     {
-        title: 'Instagram Post Generation',
-        url: '/ai/instagram-post-generation',
-        description: 'Create engaging Instagram posts with AI-generated content.'
+        title: 'Social Media Calendar',
+        url: '/ai/social-media-calendar',
+        icon: WandSparklesIcon,
+        description: 'Create 7-day engaging content schedule with the power of AI.'
     },
     {
-        title: 'Hashtag Generation',
-        url: '/ai/hashtag-generation',
-        description: 'Generate relevant hashtags for social media posts using AI.'
+        title: 'Personalized Motivational Quotes',
+        url: '/ai/personalized motivational quotes',
+        icon: Activity,
+        description: 'Generate personalized motivational quotes using AI.'
     },
     {
-        title: 'Content Generation Ideas',
-    url: '/ai/content-generation-ideas',
-    description: 'Generate creative content ideas for various platforms using AI.'
+        title: 'Creative Story Generation',
+        url: '/ai/content-story-generation',
+        icon: Lightbulb,
+        description: 'Generate creative story using AI.'
     },
     {
-        title: 'Cold Emailing Ideas',
-        url: '/ai/cold-emailing-ideas',
-        description: 'Generate effective cold emailing ideas to reach out to potential clients using AI.'
+        title: 'Blogger Outreach Email',
+        url: '/ai/blogger-outreach-email',
+        icon: AtSign,
+        description: 'Generate effective Professional template for collaboration emails using AI.'
     },
     {
-        title: 'SEO Content Generation',
-        url: '/ai/seo-content-generation',
-        description: 'Generate SEO-friendly content to improve search engine rankings using AI.'
+        title: 'Blog Growth Blueprint',
+        url: '/ai/blog-generation-blueprint',
+        icon: ChartNoAxesCombined,
+        description: 'Generate Step-by-step plan to improve search engine rankings using AI.'
     }
+
 ]
 
 

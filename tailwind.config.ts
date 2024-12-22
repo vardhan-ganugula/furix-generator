@@ -51,26 +51,42 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-			furix: {
-				'red' : "hsl(0deg 100% 65.1%)",
-				"violet" : "#7f48fb",
-				"lite-blue" : "#3384fe",
-				"deep-blue" : "#3485fe",
-				"indigo" : "#7e48fb",
-				"yellow" : "#fec034"
-			}
+  			furix: {
+  				red: 'hsl(0deg 100% 65.1%)',
+  				'violet': '#7f48fb',
+  				'lite-blue': '#3384fe',
+  				'deep-blue': '#3485fe',
+  				'indigo': '#7e48fb',
+  				'yellow': '#fec034'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		fontFamily: {
-			'poppins': ['var(--font-poppins)', ...fontFamily.sans],
-			'geist-sans': 'var(--font-geist-sans)',
-			'geist-mono': 'var(--font-geist-mono)',
-			'funnel-display': ['Funnel Display', 'serif']
-		}
+  		fontFamily: {
+  			poppins: [
+  				'var(--font-poppins)',
+                    ...fontFamily.sans
+                ],
+  			'geist-sans': 'var(--font-geist-sans)',
+  			'geist-mono': 'var(--font-geist-mono)',
+  			'funnel-display': [
+  				'Funnel Display',
+  				'serif'
+  			]
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

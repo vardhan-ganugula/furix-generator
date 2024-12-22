@@ -1,19 +1,5 @@
 import React from "react";
-import {
-  ArrowRight,
-  FileCode,
-  FileText,
-  SpellCheck,
-  Lightbulb,
-  Smile,
-  ChartNoAxesCombined,
-  Earth,
-  ArrowUpRightFromCircle,
-  Hash,
-  LucideArrowUpRightFromSquare,
-  WandSparklesIcon,
-  AtSign,
-} from "lucide-react";
+import { ArrowRight, LucideArrowUpRightFromSquare } from "lucide-react";
 import {
   BlogCard,
   BlogDescription,
@@ -26,15 +12,7 @@ import { aiTopics } from "@/constants/aiFeatures";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-const aiIcons = [
-  FileCode,
-  WandSparklesIcon,
-  Hash,
-  Lightbulb,
-  AtSign,
-  ChartNoAxesCombined,
-  // for Sentiment Analysis
-];
+
 
 function HomeDescription() {
   return (
@@ -54,7 +32,7 @@ function HomeDescription() {
             <Link href={topic.url} key={topic.title}>
               <BlogCard key={topic.title}>
                 <BlogSideIcon>
-                  {React.createElement(aiIcons[index], { size: 25 })}
+                  {React.createElement(topic.icon, { size: 25 })}
                 </BlogSideIcon>
                 <BlogSideContent>
                   <BlogTitle>

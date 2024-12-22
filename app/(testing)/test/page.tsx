@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import {CreativeStory,EmailOutreachBloggers} from '@/actions/ai'
+import {CreativeStory,PersonalizedMotivationalQuote} from '@/actions/ai'
 import markdownParser from '@/helpers/markdownParser'
 import {PrepareEmail} from '@/helpers/aiHelpers'
 import './styles.css'
@@ -11,7 +11,7 @@ function page() {
   const divRef = React.useRef(null);
   const handleGenerateText = async () => {
     try {
-      const response = await EmailOutreachBloggers(topic);
+      const response = await PersonalizedMotivationalQuote(topic);
       const reader = response.getReader();
       const decoder = new TextDecoder();
       let text = '';
@@ -20,7 +20,7 @@ function page() {
         const {value, done: doneValue} = await reader.read();
         text += decoder.decode(value);
         done = doneValue; 
-        setText(text);
+        setText(await markdownParser(text));
       }
     } catch (error) {
       console.error('Error generating text:', error);
@@ -28,8 +28,8 @@ function page() {
     }
   }
 
-  const tableToCSV = () => {
-    PrepareEmail(divRef);
+  const tableToCSV = async() => {
+    console.log(await PersonalizedMotivationalQuote(topic));
   };
   return (
     <div>
