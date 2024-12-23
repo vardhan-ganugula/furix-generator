@@ -11,7 +11,7 @@ function page() {
   const divRef = React.useRef(null);
   const handleGenerateText = async () => {
     try {
-      const response = await PersonalizedMotivationalQuote(topic);
+      const response = await CreativeStory(topic);
       const reader = response.getReader();
       const decoder = new TextDecoder();
       let text = '';

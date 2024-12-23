@@ -1,67 +1,183 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import {
+  Clock10,
+  ChevronDown,
+  Home,
+  NotebookPenIcon,
+  WandSparklesIcon,
+  Settings,
+  TicketCheckIcon,
+  HistoryIcon,
+  MessageCircleQuestionIcon,
+  LightbulbIcon,
+  Waypoints,
+  User2,
+  LogOut,
+} from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  SidebarSeparator,
+} from "@/components/ui/sidebar";
+import { Collapsible } from "./ui/collapsible";
+import {
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@radix-ui/react-collapsible";
+import Link from "next/link";
 
 // Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/products",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "History",
+    url: "/history",
+    icon: HistoryIcon,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Redeem",
+    url: "/profile?tab=redeem",
+    icon: TicketCheckIcon,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Report Bug",
+    url: "/report-bug",
+    icon: MessageCircleQuestionIcon,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Profile",
+    url: "/profile",
     icon: Settings,
   },
-]
+];
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xl font-bold my-2 text-white">
+            Furix.
+          </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="my-2">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
+            <SidebarSeparator />
+
+            <Collapsible defaultOpen className="group/collapsible">
+              <SidebarGroup>
+                <SidebarGroupLabel asChild>
+                  <CollapsibleTrigger className="flex gap-3">
+                    <Waypoints size={20} />
+                    Social Media
+                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <Link href="/social-media">
+                          <SidebarMenuButton>
+                            <LightbulbIcon />
+                            <span>Motivational Quotes</span>
+                          </SidebarMenuButton>
+                        </Link>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <Link href="/social-media">
+                          <SidebarMenuButton>
+                            <WandSparklesIcon />
+                            <span>Content Creation</span>
+                          </SidebarMenuButton>
+                        </Link>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
+            <SidebarSeparator />
+
+            <Collapsible defaultOpen className="group/collapsible">
+              <SidebarGroup>
+                <SidebarGroupLabel asChild>
+                  <CollapsibleTrigger className="flex gap-3">
+                    <Clock10 size={20} /> Content Plan
+                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <Link href="/content-plan-daily">
+                          <SidebarMenuButton>
+                            <NotebookPenIcon />
+                            <span>Content Plan Monthly</span>
+                          </SidebarMenuButton>
+                        </Link>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <Link href="/content-plan-daily">
+                          <SidebarMenuButton>
+                            <WandSparklesIcon />
+                            <span>Social Media Calender</span>
+                          </SidebarMenuButton>
+                        </Link>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {/* footer */}
+      <SidebarSeparator />
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <Link href="/profile">
+              <SidebarMenuButton>
+                <User2 />
+                <span>Profile</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <Link href="/logout">
+              <SidebarMenuButton>
+                <LogOut />
+                <span>Logout</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
