@@ -1,8 +1,5 @@
 "use client";
 import React from "react";
-import { Frame } from "lucide-react";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { AiButton } from "../_components/AiCard";
 import csvLoader from "@/helpers/csvLoader";
 import { Textarea } from "@/components/ui/textarea";
@@ -68,7 +65,7 @@ function page() {
       className="mt-4"
         onClick={async () => {
             const html = await markdownParser(
-                editorRef.current?.getInstance().getMarkdown()
+                editorRef.current?.getContent()?.toString() || ""
             );
             const table = document.createElement("div");
             table.innerHTML = html;

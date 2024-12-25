@@ -1,0 +1,67 @@
+
+.tipTap > *{
+    margin-block: 10px;
+}
+.tipTap > h1{
+    font-size: 20px;
+}
+.tipTap > h2{
+    font-size: 18px;
+}
+.tipTap > h3{
+    font-size: 16px;
+}
+.tipTap > h4{
+    font-size: 14px;
+}
+.tipTap > h5{
+    font-size: 12px;
+}
+.tipTap > h6{
+    font-size: 10px;
+}
+.tipTap > ul{
+    list-style: disc;
+    padding: 10px;
+    padding-left: 30px;
+}
+.tipTap > ol{
+    list-style-type: decimal;
+    padding: 10px;
+    padding-left: 30px;
+}
+.tipTap > blockquote{
+    background-color: #1b1b1b;
+    padding-left: 30px;
+    border-left: 1px solid white;
+    margin-block: 10px;
+}
+.tipTap > code{
+    color: #9cec1b;
+    background-color: #1b1b1b;
+    padding: 10px;
+    margin-block: 10px;
+    display: block;
+}
+.tipTap > table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 10px;
+    background-color: #1b1b1b;
+    color: white;
+}
+
+.tipTap table thead {
+    background-color: #fff;
+}
+.tipTap table th,
+.tipTap table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+.tipTap table th {
+    background-color: black;
+    font-weight: bold;
+}

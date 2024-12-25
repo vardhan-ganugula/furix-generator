@@ -1,8 +1,6 @@
 "use client";
-import React, { MutableRefObject } from "react";
+import React from "react";
 import { Frame } from "lucide-react";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { Separator } from "@/components/ui/separator";
 import {
   Card,
@@ -11,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -19,6 +16,8 @@ import { toast } from "sonner";
 import { BrandCaseStudy } from "@/actions/ai";
 import { useEditorRef } from "@/hooks/useEditorRef";
 import { streamOutput } from "@/helpers/streamHelpers";
+
+// Removed dynamic import for pdfDownloader
 
 function page() {
   const [brandName, setBrandname] = React.useState<string>("");
@@ -56,6 +55,9 @@ function page() {
       }
     }, 5000);
   };
+
+
+  
   return (
     <Card className="bg-zinc-800">
       <CardHeader>
@@ -99,6 +101,7 @@ function page() {
         <Button className="mt-4 disabled:cursor-not-allowed" onClick={handleGenerateCaseStudy} ref={btnRef}>
           Generate Case Study
         </Button>
+
       </CardContent>
     </Card>
   );

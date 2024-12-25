@@ -1,21 +1,19 @@
 "use client";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { EditorProvider, useEditorRef } from "@/hooks/useEditorRef";
 import { Toaster } from "@/components/ui/sonner";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
-
-const ToastEditor = dynamic(
-  () => import("@toast-ui/react-editor").then((mod) => mod.Editor),
-  {
-    ssr: false,
-    loading : () => <LoadingSkeleton />,
-  }
-);
+import { LucideFileDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import pdfDownloader from "@/helpers/pdfDownloader";
+import { toast } from "sonner";
+const TextEditor = dynamic(() => import("@/components/reusable/TextEditor"), {
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
 
 function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -40,9 +38,6 @@ const LoadingSkeleton = () => {
 
 function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const editorRef = useEditorRef();
-  useEffect(() => {
-    editorRef.current?.getInstance().setMarkdown("hi");
-  }, [editorRef.current]);
   return (
     <main className="dark">
       <SidebarProvider>
@@ -54,21 +49,39 @@ function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
               <SidebarTrigger className=" scale-150 text-white my-3" />
               {children}
             </div>
-            <div className="flex-shink flex-grow-0 w-2/3 pl-2">
-              <div className="p-4">
+            <div className="flex-shink flex-grow-0 w-2/3 pl-2 flex flex-col">
+              <div className="p-4 flex-grow-0 flex-shrink flex justify-between items-center">
                 <h4>Your Response will generate here</h4>
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    const content = editorRef.current?.getContent()?.toString() || "";
+                    if( content.includes("Your response will generate here") || content === "") {
+                      toast.error("Please write your response before downloading PDF");
+                      return;
+                    }
+                    if(content.includes('<table')) {
+                      toast.error("Table is not supported in PDF");
+                      return;
+                    }
+                    console.log(content);
+                    pdfDownloader(content);
+                  }}
+                >
+                  <LucideFileDown size={24} className="text-red-500" />{" "}
+                  <span>
+                    Download <span className="font-bold text-red-500">PDF</span>
+                  </span>
+                </Button>
               </div>
-              <Suspense fallback={<LoadingSkeleton />}>
-                <ToastEditor
-                  ref={editorRef}
-                  previewStyle="vertical"
-                  height="90%"
-                  initialEditType="wysiwyg"
-                  useCommandShortcut={true}
-                  theme="dark"
-                  hideModeSwitch={true}
-                />
-              </Suspense>
+              <div className="overflow-hidden overflow-y-auto flex-grow flex-shrink h-0 p-1">
+                <Suspense fallback={<LoadingSkeleton />}>
+                  <TextEditor
+                    ref={editorRef}
+                    initialContent="## Your response will generate here"
+                  />
+                </Suspense>
+              </div>
             </div>
           </section>
         </div>

@@ -1,8 +1,7 @@
-import { Editor } from "@toast-ui/react-editor";
-
+import {EditorType} from "@/app/types/customTypes";
 export const streamOutput = async (
     moduleName: Function,
-    editorRef: React.MutableRefObject<Editor | null>,
+    editorRef: React.MutableRefObject<EditorType | null>,
     ...args: any[]
   ): Promise<void> => {
     try {
@@ -15,10 +14,10 @@ export const streamOutput = async (
         const { value, done: doneValue } = await reader.read();
         text += decoder.decode(value);
         done = doneValue;
-        editorRef.current?.getInstance().setMarkdown(text);
+        editorRef.current?.setContent(text)
       }
     } catch (error) {
       console.error("Error generating text:", error);
-      editorRef.current?.getInstance().setMarkdown("Error generating text " + error);
+      editorRef.current?.setContent("Error generating text " + error);
     }
   };
