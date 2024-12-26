@@ -10,7 +10,8 @@ import { useEditorRef } from "@/hooks/useEditorRef";
 import { streamOutput } from "@/helpers/streamHelpers";
 import AiCard from "../_components/AiCard";
 import markdownParser from "@/helpers/markdownParser";
-function page() {
+
+function Page() {
   const [niche, setNiche] = React.useState<string>("");
   const editorRef = useEditorRef();
   const btnRef = React.useRef<HTMLButtonElement>(null);
@@ -79,4 +80,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

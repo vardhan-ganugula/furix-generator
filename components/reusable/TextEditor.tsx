@@ -13,7 +13,7 @@ import './style.css'
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
   interface buttonInterface {
     onClick: () => void;
-    isActive: Boolean;
+    isActive: boolean;
     icon: React.ReactElement;
   }
   const allButtons: Array<buttonInterface> = [
@@ -143,7 +143,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
 
 
 
-const TextEditor = forwardRef( ({ initialContent }: {initialContent:string}, ref) => {
+const TextEditor = forwardRef( function TextEditor({ initialContent }: {initialContent:string}, ref) {
   const editor = useEditor({
     content: initialContent,
     extensions: [

@@ -2,10 +2,11 @@
 import React from 'react'
 import {CreativeStory,PersonalizedMotivationalQuote} from '@/actions/ai'
 import markdownParser from '@/helpers/markdownParser'
-import {PrepareEmail} from '@/helpers/aiHelpers'
 import './styles.css'
-import csvLoader from '@/helpers/csvLoader'
-function page() {
+
+
+
+function TestingPage() {
   const [text, setText] = React.useState('');
   const [topic, setTopic] = React.useState('');
   const divRef = React.useRef(null);
@@ -51,4 +52,4 @@ function page() {
   )
 }
 
-export default page
+export default TestingPage

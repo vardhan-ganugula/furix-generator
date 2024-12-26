@@ -1,6 +1,4 @@
 import React from 'react'
-import { Card, CardContent, CardDescription } from '@/components/ui/card'
-import {MegaphoneIcon} from 'lucide-react'
 function CategoryCard({
   title,
   description,

@@ -4,7 +4,6 @@ import {
   createContext,
   ReactNode,
   useState,
-  useEffect,
 } from "react";
 
 interface FurixContextType {
@@ -19,9 +18,6 @@ const FurixContext = createContext<FurixContextType | null>(null);
 const FurixProvider = ({ children }: { children: ReactNode }) => {
   const [coins, setCoins] = useState<number>(3000);
   const [category, setCategory] = useState<string>("all");
-  useEffect(() => {}, []);
-
-
 
   const FurixOutput = {
     coins,

@@ -28,7 +28,7 @@ function HomeDescription() {
         </h1>
 
         <div className="grid p-1 grid-cols-1 md:grid-cols-2 gap-3 mx-auto mt-10">
-          {aiTopics.map((topic, index) => (
+          {aiTopics.map((topic) => (
             <Link href={topic.url} key={topic.title}>
               <BlogCard key={topic.title}>
                 <BlogSideIcon>

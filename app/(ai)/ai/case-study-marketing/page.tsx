@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{useState, useRef} from "react";
 import { Frame } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -19,11 +19,11 @@ import { streamOutput } from "@/helpers/streamHelpers";
 
 // Removed dynamic import for pdfDownloader
 
-function page() {
-  const [brandName, setBrandname] = React.useState<string>("");
-  const [strategy, setStrategy] = React.useState<string>("");
+function Page() {
+  const [brandName, setBrandname] = useState<string>("");
+  const [strategy, setStrategy] = useState<string>("");
   const editorRef = useEditorRef();
-  const btnRef = React.useRef<HTMLButtonElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
   
   const handleGenerateCaseStudy = () => {
     if (!brandName || !strategy) {
@@ -107,4 +107,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

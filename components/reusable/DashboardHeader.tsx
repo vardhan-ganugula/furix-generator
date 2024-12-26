@@ -14,7 +14,7 @@ import Coins  from "@/public/star.png";
 import { useFurix } from "@/hooks/furixContext";
 
 function DashboardHeader() {
-  const {coins, category} = useFurix();
+  const {coins} = useFurix();
   return (
     <>
       <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black ">

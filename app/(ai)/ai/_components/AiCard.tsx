@@ -37,7 +37,7 @@ export const AiButton = React.forwardRef<
     children: React.ReactNode;
     className?: string;
   }
->(({ onClick, children, className }, btnRef) => {
+>(function AiButton({ onClick, children, className }, btnRef) {
   return (
     <button
       onClick={onClick}
