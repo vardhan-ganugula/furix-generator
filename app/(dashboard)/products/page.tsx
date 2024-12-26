@@ -17,7 +17,7 @@ function ProductPageMain() {
     <main>
       <div className="min-h-screen bg-[#fafafa]">
         <section className="flex items-center flex-col py-10 ">
-          <h4 className="md:text-2xl font-bold mt-10 font-geist-mono font-xl text-center px-4">
+          <h4 className="md:text-2xl font-bold mt-10 font-roboto-mono font-xl text-center px-4">
             🎉 Vardhan, So what exactly do you have in mind?
           </h4>
           <p className="mt-5 text-zinc-400 font-poppins px-5 text-center text-xs md:text-sm">

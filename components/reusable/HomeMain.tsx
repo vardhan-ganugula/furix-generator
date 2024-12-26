@@ -12,8 +12,7 @@ function HomeMain() {
   return (
     <>
     
-        <section className='mx-auto flex items-center justify-center py-32 flex-col gap-10 relative h-[80vh] w-full' style={{
-            fontFamily: 'var(--font-geist-sans)',
+        <section className='mx-auto flex items-center justify-center py-32 flex-col gap-10 relative h-[80vh] w-full font-roboto' style={{
             userSelect: 'none',
         }}>
                 <h2 className='flex flex-col gap-3 text-center text-5xl font-semibold text-zinc-800' style={

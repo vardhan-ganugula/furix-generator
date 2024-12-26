@@ -23,8 +23,8 @@ function CategoryCard({
             }
           </div>
           <div>
-            <h4 className='text-white font-bold md:text-lg text-md font-geist-sans'>{title}</h4>
-            <p className='mt-2 text-zinc-200 font-geist-mono text-sm hidden lg:block'>{description}</p>
+            <h4 className='text-white font-bold md:text-lg text-md font-roboto'>{title}</h4>
+            <p className='mt-2 text-zinc-200 font-roboto-mono text-sm hidden lg:block'>{description}</p>
           </div>
         </div>
 

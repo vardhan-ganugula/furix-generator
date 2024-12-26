@@ -52,7 +52,7 @@ const BlogTitle = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={`text-md md:text-lg font-bold font-geist-sans py-3 flex justify-between ${
+      className={`text-md md:text-lg font-bold font-roboto py-3 flex justify-between ${
         className ? className : ""
       }
         `}

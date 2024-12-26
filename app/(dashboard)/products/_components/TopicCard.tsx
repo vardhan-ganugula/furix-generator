@@ -21,7 +21,7 @@ function TopicCard({
           {React.createElement(icon)}
         </div>
         <div>
-          <h4 className=" font-bold text-lg font-geist-sans">{title}</h4>
+          <h4 className=" font-bold text-lg font-roboto">{title}</h4>
           <p className="mt-2 font-poppins text-sm text-zinc-600 group-hover:text-white">
             {description}
           </p>

@@ -52,11 +52,10 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},
   			furix: {
-  				red: 'hsl(0deg 100% 65.1%)',
+  				'red': 'hsl(0deg 100% 65.1%)',
   				'violet': '#7f48fb',
   				'lite-blue': '#3384fe',
   				'deep-blue': '#3485fe',
-  				'indigo': '#7e48fb',
   				'yellow': '#fec034'
   			},
   			sidebar: {
@@ -80,8 +79,8 @@ export default {
   				'var(--font-poppins)',
                     ...fontFamily.sans
                 ],
-  			'geist-sans': 'var(--font-geist-sans)',
-  			'geist-mono': 'var(--font-geist-mono)',
+  			'roboto': 'var(--font-roboto)',
+  			'roboto-mono': 'var(--font-roboto-mono)',
   			'funnel-display': [
   				'Funnel Display',
   				'serif'

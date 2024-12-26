@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Poppins, Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  weight: ["300", "500", "900", "700"],
+  variable: "--font-roboto",
 });
-const geistMono = Geist_Mono({
+const robotoMono = Roboto_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-roboto-mono",
 });
 const poppins = Poppins({
 	subsets: ['latin'],
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} } antialiased`}
+        className={`${roboto.variable} ${robotoMono.variable} ${poppins.variable} } antialiased`}
       >
         {children}
       </body>
