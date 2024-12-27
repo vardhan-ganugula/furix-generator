@@ -14,8 +14,8 @@ function CategoryCard({
   return (
         <div style={{
           backgroundColor: color
-        }} className={`flex gap-4 items-center h-full my-5 p-4 rounded-lg shadow-md w-auto lg:w-[350px]`}>
-          <div className='bg-white p-4 rounded-full shadow-md'>
+        }} className={`flex gap-4 items-center h-full my-5 p-4 rounded-lg shadow-md w-auto lg:w-[300px]`}>
+          <div className='bg-white p-4 rounded-full shadow-md flex-grow'>
             {
               React.createElement(icon, {
                 color: color, size: 20

@@ -18,7 +18,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Furix",
+  title: "Mewtron",
   description: "the best ai content generator",
 };
 

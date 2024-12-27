@@ -7,15 +7,17 @@ import { socialData } from '@/types/customTypes';
 
 
 function Footer() {
-    const [size, setSize] = React.useState(window.innerWidth < 768 ? 15 : 24); 
+    const [size, setSize] = React.useState(24); 
     useEffect(() => {
         function handleResize() {
-            setSize(window.innerWidth < 768 ? 10 : 24);
+            setSize(window.innerWidth < 768 ? 15 : 24);
         }
+        handleResize()
         window.addEventListener('resize', handleResize)
+
         return () => window.removeEventListener('resize', handleResize)
     }
-    , [size])
+    , [])
   return (
     <footer className='w-full py-3 flex justify-around bg-black text-white'>
         <div className='flex gap-3'>

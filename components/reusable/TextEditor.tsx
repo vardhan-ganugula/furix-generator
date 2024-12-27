@@ -15,17 +15,18 @@ import { buttonInterface } from "@/types/customTypes";
 
 
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
-  const [size, setSize] = useState<number>(window.innerWidth <= 768 ? 15 : 20)
+  const [size, setSize] = useState<number>(20)
   useEffect(() => {
     const changeSize = () => { 
       setSize(window.innerWidth <= 768 ? 15 : 20)
     }
+    changeSize()
     window.addEventListener('resize',  changeSize);
 
     return () => {
       window.removeEventListener('resize', changeSize)
     }
-  }, [size])
+  }, [])
   const allButtons: Array<buttonInterface> = [
     {
       onClick: () => editor?.chain().focus().toggleBold().run(),
