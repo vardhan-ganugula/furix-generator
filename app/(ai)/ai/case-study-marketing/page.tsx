@@ -1,17 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { Frame } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { BrandCaseStudy } from "@/actions/ai";
 import { useEditorRef } from "@/hooks/useEditorRef";
