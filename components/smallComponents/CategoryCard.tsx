@@ -24,7 +24,7 @@ function CategoryCard({
           </div>
           <div>
             <h4 className='text-white font-bold md:text-lg text-md font-roboto'>{title}</h4>
-            <p className='mt-2 text-zinc-200 font-roboto-mono text-sm hidden lg:block'>{description}</p>
+            <p className='mt-2 text-zinc-200 font-roboto-mono text-xs md:text-sm hidden lg:block'>{description}</p>
           </div>
         </div>
 

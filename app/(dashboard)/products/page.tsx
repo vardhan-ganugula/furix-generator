@@ -2,10 +2,10 @@
 import React, {  useState} from "react";
 import RenderCategories from "@/components/smallComponents/RenderCategories";
 import { useFurix } from "@/hooks/furixContext";
-import CategoryCard from "./_components/CategoryCard";
 import { populateCategories, allTopics } from "@/constants/constats";
-import TopicCard from "./_components/TopicCard";
 import { Input } from "@/components/ui/input"
+import TopicCard from "@/components/smallComponents/TopicCard";
+import CategoryCard from "@/components/smallComponents/CategoryCard";
 
 function ProductPageMain() {
 
@@ -17,7 +17,7 @@ function ProductPageMain() {
     <main>
       <div className="min-h-screen bg-[#fafafa]">
         <section className="flex items-center flex-col py-10 ">
-          <h4 className="md:text-2xl font-bold mt-10 font-roboto-mono font-xl text-center px-4">
+          <h4 className="text-2xl font-bold mt-10 font-roboto-mono text-center px-4">
             🎉 Vardhan, So what exactly do you have in mind?
           </h4>
           <p className="mt-5 text-zinc-400 font-poppins px-5 text-center text-xs md:text-sm">
@@ -32,7 +32,7 @@ function ProductPageMain() {
         </section>
         <section className="w-full flex flex-col items-center">
           <div>
-            <h2 className="font-bold text-xl font-poppins text-zinc-700">
+            <h2 className="font-bold text-lg md:text-xl font-poppins text-zinc-700 pl-3">
               Popular Category
             </h2>
             <div className="md:flex gap-5 hidden">
@@ -48,10 +48,10 @@ function ProductPageMain() {
                 );
               })}
             </div>
-            <div className="flex gap-5 md:hidden">
+            <div className="flex gap-5 md:hidden px-3">
               {populateCategories.filter((item, indx) => indx !== 1).map((category) => {
                 return (
-                  <CategoryCard
+                  <CategoryCard 
                     key={category.title}
                     description={category.description}
                     title={category.title}
@@ -62,12 +62,12 @@ function ProductPageMain() {
               })}
             </div>
           </div>
-          <div className="min-w-96">
-            <div className="font-bold space-x-20 text-xl font-poppins text-zinc-700 flex justify-between w-full px-4">
+          <div className="md:min-w-96 w-full mt-5">
+            <div className="font-bold space-x-20 text-lg md:text-xl font-poppins text-zinc-700 flex items-center justify-between w-full px-4">
               <h2>
                 {category === 'all' ? 'All Topics' : `Topics in ${category}`}
               </h2>
-              <div className="font-semibold text-black">
+              <div className="font-semibold text-black w-1/2">
                 <Input type="search" id="search" value={search} onChange={(e)=> setSearch(e.target.value.toLocaleLowerCase())} placeholder="search" className="border-2 focus-visible:ring-transparent border-sky-300 outline-0 focus:border-sky-500" />
               </div>
             </div>
@@ -75,7 +75,7 @@ function ProductPageMain() {
               {
                 allTopics.filter(topic => ((topic.title.toLowerCase().includes(search) ||
                 topic.description.toLowerCase().includes(search)) &&
-                (category === 'all' || topic.category.includes(category)))).map(topic => (<TopicCard
+                (category === 'all' || topic.category.includes(category)))).map(topic => (<TopicCard 
                   key={topic.title}
                   title={topic.title}
                   description={topic.description}
