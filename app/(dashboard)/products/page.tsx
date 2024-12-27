@@ -32,7 +32,7 @@ function ProductPageMain() {
         </section>
         <section className="w-full flex flex-col items-center">
           <div className="lg:w-[1050px]">
-            <h2 className="font-bold text-lg md:text-xl font-poppins text-zinc-700">
+            <h2 className="font-bold text-lg md:text-xl font-poppins text-zinc-700 pl-4">
               Popular Category
             </h2>
             <div className="md:flex gap-5 hidden align-baseline px-3 items-stretch">
