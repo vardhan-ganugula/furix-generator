@@ -6,6 +6,7 @@ import Linkedin from '@/public/social/linkedin.jpg';
 import Threads from '@/public/social/threads.webp';
 import Youtbe from '@/public/social/youtube.webp';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 function HomeMain() {
@@ -26,9 +27,9 @@ function HomeMain() {
 
 
                 <h4 className='text-zinc-700'>Let AI create creates content 10x more faster for you</h4>
-
-                <Button className='capitalize rounded-full bg-furix-red hover:bg-red-400 py-5'>✍️ start for free</Button>
-
+                <Link href='/signup'>
+                    <Button className='capitalize rounded-full bg-furix-red hover:bg-red-400 py-5'>✍️ start for free</Button>
+                </Link>
                 {/* floating icons */}
                 <div className='shadow-lg filter rounded bg-white rotate-[35deg] absolute top-10 lg:top-1/4 right-14 lg:right-1/4'>
                     <Image src={Insta} width={70} height={70} alt='instagram logo' className='aspect-square object-cover drag-none' />

@@ -12,14 +12,14 @@ import {
 import Image from "next/image";
 import Coins  from "@/public/star.png";
 import { useFurix } from "@/hooks/furixContext";
-
+import appName from "@/constants/settings";
 function DashboardHeader() {
   const {coins} = useFurix();
   return (
     <>
       <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black ">
         <div>
-          <h2 className="text-2xl font-bold font-roboto-mono"><Link href='/'>Furix.</Link></h2>
+          <h2 className="text-2xl font-bold font-roboto-mono"><Link href='/'>{appName}</Link></h2>
         </div>
 
         <div className="flex gap-5 items-center">

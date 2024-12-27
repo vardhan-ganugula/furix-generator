@@ -11,13 +11,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-
+import appName from "@/constants/settings";
 function Header() {
   return (
     <>
       <header className="shadow w-full py-2 flex justify-around items-center bg-white text-black font-poppins">
         <div>
-          <h2 className="text-2xl font-bold font-roboto-mono"><Link href='/'>Furix.</Link></h2>
+          <h2 className="text-2xl font-bold font-roboto-mono"><Link href='/'>{appName}</Link></h2>
         </div>
 
         <div>

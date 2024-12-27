@@ -20,11 +20,11 @@ const AiCard = ({
   return (
     <Card className="bg-zinc-800">
       <CardHeader>
-        <CardTitle className="text-4xl flex items-center gap-4">
+        <CardTitle className="lg:text-4xl md:text-2xl flex items-center gap-4">
           <Frame />
           {title}
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="text-xs md:text-sm lg:text-md">{description}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
@@ -41,7 +41,7 @@ export const AiButton = React.forwardRef<
   return (
     <button
       onClick={onClick}
-      className={`mt-4 disabled:cursor-not-allowed bg-white px-3 py-2 rounded text-black text-sm ${className}`}
+      className={`mt-4 disabled:cursor-not-allowed bg-white px-3 py-2 rounded text-black text-xs ${className}`}
       ref={btnRef}
     >
       {children}

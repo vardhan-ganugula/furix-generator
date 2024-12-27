@@ -32,7 +32,7 @@ import {
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 import Link from "next/link";
-
+import appName from "@/constants/settings";
 // Menu items.
 const items = [
   {
@@ -68,7 +68,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-xl font-bold my-2 text-white">
-            Furix.
+            {appName}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="my-2">

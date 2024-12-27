@@ -43,13 +43,13 @@ function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
       <SidebarProvider>
         <AppSidebar />
 
-        <div className="flex h-screen bg-zinc-900 w-full">
-          <section className="flex w-full min-h-screen p-4 text-white font-poppins">
-            <div className="flex-shink flex-grow-0 w-1/3 border-r border-zinc-700 pr-2">
+        <div className="flex md:h-screen bg-zinc-900 w-full">
+          <section className="flex w-full min-h-screen p-4 text-white font-poppins flex-col md:flex-row">
+            <div className="flex-shink flex-grow-0 md:w-1/3 w-full border-r border-zinc-700 pr-2">
               <SidebarTrigger className=" scale-150 text-white my-3" />
               {children}
             </div>
-            <div className="flex-shink flex-grow-0 w-2/3 pl-2 flex flex-col">
+            <div className="flex-shink flex-grow-0 md:w-2/3 w-full pl-2 flex flex-col">
               <div className="p-4 flex-grow-0 flex-shrink flex justify-between items-center">
                 <h4>Your Response will generate here</h4>
                 <Button
@@ -74,7 +74,7 @@ function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
                   </span>
                 </Button>
               </div>
-              <div className="overflow-hidden overflow-y-auto flex-grow flex-shrink h-0 p-1">
+              <div className="overflow-hidden overflow-y-auto flex-grow flex-shrink md:h-0 h-full p-1">
                 <Suspense fallback={<LoadingSkeleton />}>
                   <TextEditor
                     ref={editorRef}
