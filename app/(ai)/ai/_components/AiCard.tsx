@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -20,7 +21,7 @@ const AiCard = ({
   return (
     <Card className="bg-zinc-800">
       <CardHeader>
-        <CardTitle className="lg:text-4xl md:text-2xl flex items-center gap-4">
+        <CardTitle className="lg:text-4xl text-2xl flex items-center gap-4">
           <Frame />
           {title}
         </CardTitle>
@@ -39,13 +40,13 @@ export const AiButton = React.forwardRef<
   }
 >(function AiButton({ onClick, children, className }, btnRef) {
   return (
-    <button
+    <Button
       onClick={onClick}
       className={`mt-4 disabled:cursor-not-allowed bg-white px-3 py-2 rounded text-black text-xs ${className}`}
       ref={btnRef}
     >
       {children}
-    </button>
+    </Button>
   );
 });
 export default AiCard;

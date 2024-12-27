@@ -47,10 +47,10 @@ function Page() {
       description="Generate a 7-day social media content calendar for a specific niche, detailing daily posts tailored to Instagram, Facebook, and Twitter. Include dates, platforms, times, post types, captions, hashtags, media, and varied content to enhance brand visibility, engagement, and follower growth."
     >
       <div>
-        <h2 className="text-2xl font-bold">Describe your niche</h2>
+        <h2 className="text-xl font-bold">Describe your niche</h2>
         <div className="my-2">
           <Textarea
-            className="border border-zinc-700"
+            className="border border-zinc-700 text-xs"
             placeholder="Eco-friendly Products"
             value={niche}
             onChange={(e) => setNiche(e.target.value)}
@@ -59,11 +59,11 @@ function Page() {
       </div>
       <div className="flex gap-5 items-center">
 
-      <AiButton onClick={handleGenerateCaseStudy} ref={btnRef}>
-        {niche ? "Generate Calendar" : "Fill in the required fields"}
+      <AiButton onClick={handleGenerateCaseStudy} ref={btnRef}  >
+        Generate
       </AiButton>
       <Button
-      className="mt-4"
+      className="mt-4 text-xs"
         onClick={async () => {
             const html = await markdownParser(
                 editorRef.current?.getContent()?.toString() || ""

@@ -1,4 +1,3 @@
-
 .tipTap > *{
     margin-block: 10px;
 }
@@ -64,4 +63,25 @@
 .tipTap table th {
     background-color: black;
     font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .tipTap > h1{
+        font-size: 18px;
+    }
+    .tipTap > h2{
+        font-size: 16px;
+    }
+    .tipTap > h3{
+        font-size: 14px;
+    }
+    .tipTap > h4{
+        font-size: 12px;
+    }
+    .tipTap > h5{
+        font-size: 10px;
+    }
+    .tipTap > h6{
+        font-size: 8px;
+    }
 }

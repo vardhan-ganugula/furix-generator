@@ -147,7 +147,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
                 </div>
             ) )
         }
-        { React.createElement(Bold, {size: 20}) } 
+
       </div>
     </div>
   );
@@ -176,10 +176,9 @@ const TextEditor = forwardRef( function TextEditor({ initialContent }: {initialC
     editorProps: {
       attributes: {
         class: "p-4 border border-white focus:border-0 transition bg-zinc-800 tipTap",
-        id: "tipTap",
       },
     },
-    immediatelyRender: false,
+    immediatelyRender: false, 
   });
 
   useImperativeHandle(ref, ()=> ({
