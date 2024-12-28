@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import socials from '@/constants/socials';
 import { socialData } from '@/types/customTypes';
-
+import appName from '@/constants/settings';
 
 function Footer() {
     const [size, setSize] = React.useState(24); 
@@ -29,7 +29,7 @@ function Footer() {
             }
         </div>
         <div>
-            <p className='text-xs md:text-md'>© {new Date().getFullYear()} Furix. All rights reserved.</p>
+            <p className='text-xs md:text-md'>© {new Date().getFullYear()} {appName} All rights reserved.</p>
         </div>
     </footer>
   )
