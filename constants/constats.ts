@@ -55,7 +55,7 @@ export const allTopics: Array<Topic> = [
   },
   {
     title: "Personalized Quotes",
-    url: "/ai/personalized motivational quotes",
+    url: "/ai/personalized-motivational-quotes",
     icon: Activity,
     description: "Generate personalized motivational quotes using AI.",
     category: ["social media", "writing"],

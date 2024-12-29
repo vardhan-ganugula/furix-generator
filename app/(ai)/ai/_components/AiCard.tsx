@@ -42,7 +42,7 @@ export const AiButton = React.forwardRef<
   return (
     <Button
       onClick={onClick}
-      className={`mt-4 disabled:cursor-not-allowed bg-white px-3 py-2 rounded text-black text-xs ${className}`}
+      className={`mt-4 disabled:cursor-wait bg-white px-3 py-2 rounded text-black text-xs ${className}`}
       ref={btnRef}
     >
       {children}

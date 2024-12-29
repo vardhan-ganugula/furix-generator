@@ -17,7 +17,7 @@ const pdfDownloader = async (content: string) => {
     element.appendChild(footer);
   const options = {
     margin: 1,
-    filename: 'myfile.pdf',
+    filename: 'mewtron.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },

@@ -176,7 +176,7 @@ const TextEditor = forwardRef( function TextEditor({ initialContent }: {initialC
     ],
     editorProps: {
       attributes: {
-        class: "p-4 border border-white focus:border-0 transition bg-zinc-800 tipTap",
+        class: "p-4 border border-white focus:border-white rounded transition bg-zinc-800 tipTap",
       },
     },
     immediatelyRender: false, 
