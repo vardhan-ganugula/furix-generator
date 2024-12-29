@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.10",
-    "@getbrevo/brevo": "^2.2.0",
     "@google/generative-ai": "^0.21.0",
     "@radix-ui/react-collapsible": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
