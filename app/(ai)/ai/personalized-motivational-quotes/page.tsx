@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState,useRef } from "react";
 import AiCard, { AiButton } from "../_components/AiCard";
-import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { streamOutput } from "@/helpers/streamHelpers";
 import { useEditorRef } from "@/hooks/useEditorRef";
 import { PersonalizedMotivationalQuote } from "@/actions/ai";
 import { Textarea } from "@/components/ui/textarea";
 
-const page = () => {
+const MotivationalPage = () => {
   const [theme, setTheme] = useState<string>("");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const editorRef = useEditorRef();
@@ -74,4 +73,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MotivationalPage;

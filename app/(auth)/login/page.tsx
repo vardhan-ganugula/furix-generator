@@ -73,7 +73,7 @@ const LoginPage = () => {
                       <Link href='/forgot-password' className='text-sm text-black cursor-pointer decoration-wavy underline underline-offset-4'>Forgot Password?</Link>
                    </div>
                    <Button type='submit' className='w-full bg-black text-white py-5 rounded-none'>Login</Button>
-                   <div className='text-center text-sm text-black'>Don't have an account? <Link href='/signup' className=' decoration-wavy underline underline-offset-4'>Register</Link></div>
+                   <div className='text-center text-sm text-black'>Don&#39;t have an account? <Link href='/signup' className='decoration-wavy underline underline-offset-4'>Register</Link></div>
                 </form>
               </Form>
             </CardContent>
