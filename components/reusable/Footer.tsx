@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, memo } from 'react'
 import Link from 'next/link'
 
 import socials from '@/constants/socials';
@@ -35,4 +35,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default memo(Footer)

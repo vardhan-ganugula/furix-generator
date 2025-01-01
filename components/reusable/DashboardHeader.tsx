@@ -13,6 +13,8 @@ import Image from "next/image";
 import Coins  from "@/public/star.png";
 import { useFurix } from "@/hooks/furixContext";
 import appName from "@/constants/settings";
+
+
 function DashboardHeader() {
   const {coins} = useFurix();
   return (
@@ -46,4 +48,4 @@ function DashboardHeader() {
   );
 }
 
-export default DashboardHeader;
+export default React.memo(DashboardHeader);

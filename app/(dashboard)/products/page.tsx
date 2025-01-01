@@ -11,7 +11,7 @@ function ProductPageMain() {
 
   const {category} = useFurix();
   const [search, setSearch] = useState('');
-
+  
   
   return (
     <main>

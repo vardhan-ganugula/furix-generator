@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React,{memo} from "react";
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 
@@ -71,4 +71,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);
