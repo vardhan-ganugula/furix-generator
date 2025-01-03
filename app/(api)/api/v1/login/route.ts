@@ -58,9 +58,10 @@ export async function POST(request:NextRequest) {
 
     return response;
 
-  } catch (error:any) {
+  } catch (error) {
+    console.error(error);
     return NextResponse.json(
-      {status:'error',message:'An error occured ' + error.message},
+      {status:'error',message:'An error occured'},
     )
   }
   

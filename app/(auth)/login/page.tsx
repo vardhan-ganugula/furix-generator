@@ -16,7 +16,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { loginSchema } from "@/lib/schema/user";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -46,7 +46,7 @@ const LoginPage = () => {
         toast.success(responseData.message);
         router.push("/dashboard");
       }
-    } catch (error: AxiosError | any) {
+    } catch (error) {
       console.error(error);
       toast.error("An error occurred");
     } finally {

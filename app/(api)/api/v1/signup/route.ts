@@ -17,9 +17,10 @@ export async function POST(request: NextRequest) {
     });
   }
   try {
-    let { username, email, password } = userDetails;
-    username = username.trim().toLowerCase();
-    email = email.trim().toLowerCase();
+    
+    const username = userDetails.username.trim().toLowerCase();
+    const email = userDetails.email.trim().toLowerCase();
+    const password = userDetails.password;
     const user = await User.findOne({ $or: [{ email }, { username }] });
     if(user){
       return NextResponse.json({
@@ -45,9 +46,10 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
+    console.error(error);
     return NextResponse.json({
       status: "error",
-      message: "Please enter all fields",
+      message: "something went wrong"
     });
   }
 }
