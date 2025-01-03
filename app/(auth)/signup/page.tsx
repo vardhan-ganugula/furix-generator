@@ -15,41 +15,57 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import axios from "axios";
+import { signupSchema } from "@/lib/schema/user";
+import { toast } from "sonner"
+import { LoaderCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 
 const SignupPage = () => {
-  const formSchema = z.object({
-    username: z
-      .string()
-      .min(5, { message: "username must be at least 5 characters long" }),
-    email: z.string().email(),
-    password: z
-      .string()
-      .min(6)
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        { message: "Use a strong Password" }
-      ),
-  });
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isPending, setPending] = React.useState<boolean>();
+  const form = useForm<z.infer<typeof signupSchema>>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       username: "",
       email: "",
       password: "",
     },
   });
-
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const router = useRouter();
+  const onSubmit = async (data: z.infer<typeof signupSchema>) => {
+    setPending(true);
+    try{
+      const response = await axios.post("/api/v1/signup", data);
+      const responseData = response.data;
+      if (responseData.status === "error") {
+        toast(responseData.message);
+      }
+      if (responseData.status === "success") {
+        toast(responseData.message);
+        form.reset();
+        router.push("/login");
+      }
+    }catch(error){
+      console.error(error);
+      toast.error("Something went wrong ");
+    }
+    finally{
+      setPending(false);
+    }
   };
 
   return (
-    <section className='font-poppins flex flex-col items-center justify-center h-[91vh] md:h-[89.45vh] w-full inset-0 bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] md:[mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]'>
-      <div >
-        <Card className='w-[350px] bg-white rounded-none p-0'>
-          <CardHeader className='p-0 '>
-            <CardTitle className='text-3xl bg-black text-white py-5 text-center'>Register</CardTitle>
-            <CardContent>
+    <section className="font-poppins flex flex-col items-center justify-center h-[91vh] md:h-[89.45vh] w-full inset-0 bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] md:[mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]">
+      <div>
+        <Card className="w-[350px] bg-white rounded-none p-0">
+          <CardHeader className="p-0 ">
+            <CardTitle className="text-3xl bg-black text-white py-5 text-center">
+              Register
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -61,45 +77,76 @@ const SignupPage = () => {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First Name</FormLabel>
+                      <FormLabel>User Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="first name" {...field} className="rounded-none py-5"/>
+                        <Input
+                          placeholder="username"
+                          {...field}
+                          className="rounded-none py-5"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-  
-                <FormField 
+
+                <FormField
                   control={form.control}
                   name="email"
-                  render = { ({field}) => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="email" {...field} className="rounded-none py-5" />
+                        <Input
+                          placeholder="email"
+                          {...field}
+                          className="rounded-none py-5"
+                          autoComplete="new-email"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
-                  )} />
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input placeholder="password" {...field} className="rounded-none py-5" type="password" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                    <p className="py-2 text-xs">already have an account? login <Link href='/login' className="underline text-blue-600 decoration-blue-500 underline-offset-4 ">here</Link></p>
-                  <Button type="submit" className="w-full rounded-none py-5  flex items-center bg-black hover:bg-zinc-800"> Sign Up </Button>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="password"
+                          {...field}
+                          className="rounded-none py-5"
+                          type="password"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <p className="py-2 text-xs">
+                  already have an account? login{" "}
+                  <Link
+                    href="/login"
+                    className="underline text-blue-600 decoration-blue-500 underline-offset-4 "
+                  >
+                    here
+                  </Link>
+                </p>
+                <Button
+                  type="submit"
+                  className="w-full rounded-none py-5  flex items-center bg-black hover:bg-zinc-800"
+                  disabled={isPending}
+                >
+                  {" "}
+                  <LoaderCircle size={25} className={`${isPending ? 'animate animate-spin block': 'hidden' }`} />
+                  Sign Up{" "}
+                </Button>
               </form>
             </Form>
-            </CardContent>
-          </CardHeader>
+          </CardContent>
         </Card>
       </div>
     </section>

@@ -1,18 +1,27 @@
 import mongoose from 'mongoose';
 
-export async function connectDB() {
-    try {
-        mongoose.connect(process.env.MONGODB_URI as string)
-        const connection = mongoose.connection;
-        connection.on('connected', () => {
-            console.log('Connected to the database successfully');
-        });
-        connection.on('error', (error) => {
-            console.error('Error connecting to the database', error.message);
-            process.exit(1);
-        });
-    } catch (error:any) {
-        console.error('Error connecting to the database. Exiting process', error.message);
-    }    
+async function connect() {
+    const MONGODB_URI = process.env.MONGODB_URI;
+    if(!MONGODB_URI) {
+        console.error('No MONGODB_URI provided');
+        return
+    }
+    const connection = mongoose.connection.readyState;
+    if(connection === 1) {
+        console.log('DB already connected');
+        return;
+    }
+    if(connection ==2) {
+        console.log('DB is connecting');
+        return;
+    }
+    try{
+        await mongoose.connect(MONGODB_URI);
+        console.log('DB connected');
+    }catch(err){
+        console.error('DB connection error', err);
+    }
     
 }
+
+export default connect;

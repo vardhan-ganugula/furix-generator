@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { EditorProvider, useEditorRef } from "@/hooks/useEditorRef";
-import { Toaster } from "@/components/ui/sonner";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LucideFileDown } from "lucide-react";
@@ -18,7 +17,6 @@ const TextEditor = dynamic(() => import("@/components/reusable/TextEditor"), {
 function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <EditorProvider>
-      <Toaster />
       <MainLayout>{children}</MainLayout>
     </EditorProvider>
   );
