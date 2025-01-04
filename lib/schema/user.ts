@@ -19,7 +19,24 @@ const loginSchema = z.object({
     rememberMe: z.boolean().optional(),
   })
 
-
+const userInfoSchema = z.object({
+    firstName: z.string().min(3),
+    lastName: z.string().min(3),
+    email: z.string().email(),
+    username: z.string().min(3),
+    currentPassword: z.string()
+    .min(6)
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      { message: "Use a strong Password" }
+    ),
+    newPassword: z.string()
+    .min(6)
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      { message: "Use a strong Password" }
+    ),
+  });
 export {
-    signupSchema, loginSchema
+    signupSchema, loginSchema,userInfoSchema
 }

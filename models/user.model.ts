@@ -40,6 +40,16 @@ const userSchema = new mongoose.Schema({
     forgotPasswordExpire: {
         type: Date,
     },
+    token : {
+        type: Number,
+        default: 3000,
+    },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);

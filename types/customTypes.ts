@@ -16,4 +16,24 @@ interface Topic {
     category: Array<string>;
     url: string;
 }
-export type { socialData,buttonInterface, Topic }
+
+interface JWTtokenInfo{
+    id: string,
+    email: string,
+    role: string
+}
+interface UserProfileDetails{
+    username: string,
+    email: string,
+    role: string,
+    avatar: string,
+    isVerified: boolean,
+    token: number,
+    firstName?: string,
+    lastName?: string,
+    _id?: string,
+    __v?: number
+}
+
+
+export type { socialData,buttonInterface, Topic, JWTtokenInfo,UserProfileDetails }

@@ -16,18 +16,18 @@ import appName from "@/constants/settings";
 
 
 function DashboardHeader() {
-  const {coins} = useFurix();
+  const {coins, isLoading} = useFurix();
   return (
     <>
-      <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black ">
+      <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black dark:bg-zinc-900 dark:text-white">
         <div>
           <h2 className="text-2xl font-bold font-roboto-mono"><Link href='/'>{appName}</Link></h2>
         </div>
 
         <div className="flex gap-5 items-center">
-            <div className="space-x-2 flex items-center bg-yellow-100 py-1 px-5 rounded-lg text-md">
+            <div className="space-x-2 flex items-center bg-yellow-100 dark:bg-white py-1 px-5 rounded-lg text-md dark:text-black">
               <Image src={Coins} alt="coin" width={25} height={25} />
-              <span className="font-roboto-mono text-sm font-semibold">{coins}</span>
+              <span className="font-roboto-mono text-sm font-semibold">{isLoading ? 'loading' : coins } </span>
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger className="font-bold">Vardhan</DropdownMenuTrigger>

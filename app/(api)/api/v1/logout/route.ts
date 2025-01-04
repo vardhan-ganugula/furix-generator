@@ -11,6 +11,7 @@ export async function GET() {
             httpOnly: true,
             expires: new Date(0)
         })
+        return response;
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: "logout failed" }, { status: 500 });

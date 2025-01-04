@@ -5,6 +5,7 @@ import { z } from "zod";
 import bcryptjs from 'bcryptjs';
 import { loginSchema } from "@/lib/schema/user";
 import jwt from 'jsonwebtoken';
+import { JWTtokenInfo } from "@/types/customTypes";
 
 connect();
 export async function POST(request:NextRequest) {
@@ -38,7 +39,7 @@ export async function POST(request:NextRequest) {
       })
     }
 
-    const tokenDate = {
+    const tokenDate:JWTtokenInfo = {
       id:user._id,
       email:user.email,
       role:user.role
@@ -54,6 +55,7 @@ export async function POST(request:NextRequest) {
     response.cookies.set('token',token,{
       httpOnly:true,
       secure:true,
+      expires: new Date(Date.now() + (rememberMe ? 604800000 : 86400000)),
       sameSite:'strict',});
 
     return response;
