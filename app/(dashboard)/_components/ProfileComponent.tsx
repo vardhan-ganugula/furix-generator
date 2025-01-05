@@ -17,16 +17,13 @@ import React, { useEffect, memo } from "react";
 import axios from "axios";
 import { UserProfileDetails } from "@/types/customTypes";
 import { useFurix } from "@/hooks/furixContext";
-
-
-
-
-
+import { toast } from "sonner";
 
 
 
 const ProfileComponent = () => {
-    const {setCoins} = useFurix()
+  const { setCoins } = useFurix();
+
   const [userInfo, setUserInfo] = React.useState<UserProfileDetails>({
     firstName: "",
     lastName: "",
@@ -37,40 +34,57 @@ const ProfileComponent = () => {
     token: 0,
     avatar: "",
   });
+
+  const infoForm = useForm<z.infer<typeof userInfoSchema>>({
+    resolver: zodResolver(userInfoSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      username: "",
+      currentPassword: "",
+      newPassword: "",
+    },
+  });
+
+  const handleProfileUpdate = (data: z.infer<typeof userInfoSchema>) => {
+    console.log(data)
+    axios
+      .post("/api/v1/profile", data)
+      .then((res) => {
+        if(res.data.status === "success"){
+          toast.success("Profile updated successfully")
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Unable to update the profile");
+      });
+  };
+
+
   useEffect(() => {
     axios
       .get("/api/v1/profile")
       .then((res) => {
         const newData = {
-            ...userInfo,
-            ...res.data.data,
-        } 
-        console.log(newData)
+          ...userInfo,
+          ...res.data.data,
+        };
         setUserInfo(newData);
-        setCoins(newData.token)
-        infoForm.reset(newData)
+        setCoins(newData.token);
+        infoForm.reset(newData);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setCoins, infoForm]);
 
-  const infoForm = useForm<z.infer<typeof userInfoSchema>>({
-    resolver: zodResolver(userInfoSchema),
-    defaultValues: {
-      firstName: userInfo.firstName,
-      lastName: userInfo.lastName,
-      email:    userInfo.email,
-      username:     userInfo.username,
-      currentPassword:  "",
-      newPassword: "",
-    },
-  });
   return (
     <div className="border-2 border-emerald-600 p-5 rounded-xl">
       <h1 className="text-2xl font-bold">Personal Information</h1>
       <div className="flex p-5 gap-5 flex-col">
-        <div className="justify-between  flex flex-col gap-5 md:flex-row md:gap-10">
+        <div className="justify-between flex flex-col gap-5 md:flex-row md:gap-10">
           <div className="flex items-center gap-5">
             <img
               src="https://thumbs.dreamstime.com/b/studio-photo-african-american-female-model-face-profile-closeup-fashionable-portrait-metis-young-woman-perfect-smooth-153607290.jpg"
@@ -83,7 +97,7 @@ const ProfileComponent = () => {
             </div>
           </div>
           <div className="w-2/7 flex-shrink flex-grow-0">
-            <form className="space-x-3">
+            <form className="space-x-3 text-xs">
               <input
                 type="file"
                 accept="image/*"
@@ -106,8 +120,8 @@ const ProfileComponent = () => {
         <div>
           <Form {...infoForm}>
             <form
-              onSubmit={infoForm.handleSubmit(() => {})}
-              className="grid lg:grid-cols-3 md:grid-cols-2 gap-x-5 gap-y-3 md:px-10"
+              onSubmit={infoForm.handleSubmit(handleProfileUpdate)}
+              className="md:grid space-y-5 md:space-y-0 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 grid-rows-7 md:grid-rows-4 lg:grid-rows-3 gap-x-5 gap-y-3 md:px-10"
             >
               <FormField
                 control={infoForm.control}
@@ -174,6 +188,8 @@ const ProfileComponent = () => {
                         placeholder="Current Password"
                       />
                     </FormControl>
+                    <FormMessage />
+
                   </FormItem>
                 )}
               />
@@ -190,6 +206,7 @@ const ProfileComponent = () => {
                         placeholder="New Password"
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />

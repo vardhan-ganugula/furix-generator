@@ -44,7 +44,7 @@ const LoginPage = () => {
 
       if (responseData.status === "success") {
         toast.success(responseData.message);
-        router.push("/dashboard");
+        router.push("/profile");
       }
     } catch (error) {
       console.error(error);

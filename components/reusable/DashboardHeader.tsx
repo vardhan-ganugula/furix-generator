@@ -17,6 +17,7 @@ import appName from "@/constants/settings";
 
 function DashboardHeader() {
   const {coins, isLoading} = useFurix();
+
   return (
     <>
       <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black dark:bg-zinc-900 dark:text-white">

@@ -59,10 +59,10 @@ function Header() {
           </div>
           <div className="font-poppins flex gap-2">
             <Button className="rounded-full text-xs bg-white shadow-none text-black hover:bg-black hover:text-white">
-              Sign In
+              <Link href="/login">Login</Link>
             </Button>
             <Button variant="default" className="rounded-full text-xs">
-              Sign Up
+              <Link href='/signup'>Sign Up</Link> 
             </Button>
           </div>
         </div>

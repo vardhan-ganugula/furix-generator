@@ -14,9 +14,9 @@ const RedeemSection = () => {
   const [redeemCode, setRedeemCode] = React.useState<string>("");
   return (
     <div className="border-2 border-emerald-600 p-5 rounded-xl">
-      <h1 className="text-2xl font-bold">Redeem Information</h1>
+      <h1 className="text-2xl font-bold mb-5">Redeem Information</h1>
       <div className="w-full flex items-center justify-center">
-        <div className="bg-zinc-800 rounded-xl p-5 w-1/3 text-white">
+        <div className="bg-zinc-800 rounded-xl p-5 lg:w-[400px] w-full text-white">
           <div className="flex items-center gap-5">
             <Image
               src={Coin}
@@ -67,4 +67,4 @@ const RedeemSection = () => {
   );
 };
 
-export default RedeemSection;
+export default React.memo(RedeemSection);

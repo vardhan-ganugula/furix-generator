@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/sonner";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "500", "900", "700"],
@@ -31,7 +31,8 @@ export default function RootLayout({
     <html lang="en" >
       <body
         className={`${roboto.variable} ${robotoMono.variable} ${poppins.variable} } antialiased`}
-      >
+      > 
+        <Toaster />
         {children}
       </body>
     </html>
