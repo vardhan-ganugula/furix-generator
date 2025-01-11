@@ -6,6 +6,7 @@ const user = process.env.MAIL_USER;
 const pass = process.env.MAIL_PASS;
 // Create a transporter object using the SES transport
 if(!host || !port || !user || !pass){
+    console.log(!host, !port, !user, !pass);
     throw new Error("Please provide all the mail details");
 }
 const transporter = nodemailer.createTransport(
