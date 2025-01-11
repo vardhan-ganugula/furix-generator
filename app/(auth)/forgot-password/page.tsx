@@ -10,29 +10,25 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { emailSchema } from "@/lib/schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { emailSchema } from "@/lib/schema/user";
-import { Loader2 } from "lucide-react";
 
-const VerifyPage = () => {
+const ForgotPasswordPage = () => {
   const form = useForm({
     resolver: zodResolver(emailSchema),
     defaultValues: {
       email: "",
     },
   });
-
-  const handleEmailReponse = async (data: z.infer<typeof emailSchema>) => {
+  const handleResetPassword = async (data: z.infer<typeof emailSchema>) => {
     try {
-      const response = await axios.post(
-        "/api/v1/send-verification-email",
-        data
-      );
+      const response = await axios.post("/api/v1/forgot-password", data);
       if (response.data.status === "success") {
         toast.success(response.data.message);
       } else {
@@ -44,13 +40,13 @@ const VerifyPage = () => {
     }
   };
   return (
-    <Card className="shadow w-80 rounded-none ">
-      <CardHeader className="bg-black text-white text-center">
-        <CardTitle>Send Verification Email</CardTitle>
+    <Card className="w-96 rounded-none shadow">
+      <CardHeader className="bg-black text-white text-center text-xl">
+        <CardTitle>Forgot Password</CardTitle>
       </CardHeader>
       <CardContent className="py-5">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleEmailReponse)}>
+          <form onSubmit={form.handleSubmit(handleResetPassword)}>
             <FormField
               name="email"
               render={({ field }) => (
@@ -67,11 +63,7 @@ const VerifyPage = () => {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="w-full mt-5 rounded-none py-5 "
-              disabled={form.formState.isSubmitting}
-            >
+            <Button className="bg-black text-white text-sm rounded-none hover:bg-zinc-800 py-5 mt-5 w-full" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? (
                 <>
                   <span className="mr-2 animate-spin">
@@ -90,4 +82,4 @@ const VerifyPage = () => {
   );
 };
 
-export default VerifyPage;
+export default ForgotPasswordPage;

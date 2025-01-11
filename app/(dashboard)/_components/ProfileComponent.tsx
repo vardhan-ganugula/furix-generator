@@ -33,7 +33,7 @@ const ProfileComponent = () => {
     role: "",
     isVerified: false,
     token: 0,
-    avatar: "",
+    avatar: "https://thumbs.dreamstime.com/b/studio-photo-african-american-female-model-face-profile-closeup-fashionable-portrait-metis-young-woman-perfect-smooth-153607290.jpg",
   });
 
   const infoForm = useForm<z.infer<typeof userInfoSchema>>({
@@ -96,7 +96,7 @@ const ProfileComponent = () => {
         <div className="justify-between flex flex-col gap-5 md:flex-row md:gap-10">
           <div className="flex items-center gap-5">
             <Image
-              src={"https://thumbs.dreamstime.com/b/studio-photo-african-american-female-model-face-profile-closeup-fashionable-portrait-metis-young-woman-perfect-smooth-153607290.jpg"}
+              src={userInfo.avatar}
               alt="profile"
               className="rounded-full object-cover w-[100px] h-[100px]"
               width={100}

@@ -4,15 +4,15 @@ import React, { Suspense, useEffect } from "react";
 import DashbordCategories from "../_components/DashbordCategories";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-
+import LoadingSection from "../_components/LoadingSection";
 const ProfileComponent = dynamic(() => import("../_components/ProfileComponent"), {
   ssr: false,
-  loading: () => <div>Loading Profile Component...</div>,
+  loading: () => <LoadingSection/>,
 });
 
 const RedeemSection = dynamic(() => import("../_components/RedeemSection"), {
   ssr: false,
-  loading: () => <div>Loading Redeem Section...</div>,
+  loading: () => <LoadingSection/>,
 });
 
 const ProfilePage = () => {
@@ -29,12 +29,12 @@ const ProfilePage = () => {
       <DashbordCategories currentTab={currentTab} />
       <section className="space-y-5 mt-5">
         {currentTab === "profile" && (
-          <Suspense fallback={<div>Loading Profile...</div>}>
+          <Suspense fallback={<LoadingSection/>}>
             <ProfileComponent />
           </Suspense>
         )}
         {currentTab === "redeem" && (
-          <Suspense fallback={<div>Loading Redeem Section...</div>}>
+          <Suspense fallback={<LoadingSection/>}>
             <RedeemSection />
           </Suspense>
         )}

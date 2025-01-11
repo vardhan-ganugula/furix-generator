@@ -2,7 +2,7 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ const VerifyEmailPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        setResponse({ status: "error", message: err.message });
+        setResponse({ status: "error", message: (err as AxiosError<{message:string}>)?.response?.data.message || "Unable to verify email" });
       });
   }, [token]);
   return (

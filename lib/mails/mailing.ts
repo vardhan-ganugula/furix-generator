@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { verificationEmailTemplate } from "@/constants/emailTemplates";
+import { passwordResetEmailTemplate, verificationEmailTemplate } from "@/constants/emailTemplates";
 const host = process.env.MAIL_HOST;
 const port = process.env.MAIL_PORT as string;
 const user = process.env.MAIL_USER;
@@ -51,8 +51,7 @@ const sendEmail = async (email: string, token: string, type: mailType) => {
       from: `"Metron.Tech" <${user}>`,
       to: email,
       subject: "Reset Password",
-      html: `<p>Click on the link below to reset your password</p>
-            <a href="${process.env.BASE_URL}/reset-password?token=${token}">Reset Password</a>`,
+      html: passwordResetEmailTemplate(token),
     };
   }
   // Send mail with defined transport object

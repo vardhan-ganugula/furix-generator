@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "https://res.cloudinary.com/dkkgmzpqd/image/upload/v1631024399/avatar/avatar-1_e8z9y4.png",
+        default: "https://res.cloudinary.com/djwnxly09/image/upload/v1736590995/A_dynamic_motion-filled_cat_logo_on_a_white_background._The_pink-coated_cat_reminiscent_of_the_Squid_Game_front_man_is_rendered_in_electric_vivid_colors_with_blurred_lines_and_action_poses_ow5c9j.jpg",
     },
     isVerified: {
         type: Boolean,
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     resetPasswordToken: {
         type: String,
     },
-    resetPasswordExpire: {
+    resetPasswordExpires: {
         type: Date,
     },
     forgotPasswordToken: {

@@ -17,7 +17,6 @@ const publicURLs = [
     '/send-verification-email',
     '/api/v1/send-verification-email',
     
-    
 ]
 
 

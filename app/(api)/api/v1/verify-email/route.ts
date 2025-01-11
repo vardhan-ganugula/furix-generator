@@ -39,7 +39,13 @@ export const POST = async (req: NextRequest) => {
   try {
     await User.findOneAndUpdate(
       { verificationToken: token },
-      { isVerified: true }
+      {
+        $set: {
+          isVerified: true,
+          verificationToken: '',
+          verificationTokenExpires: Date.now(),
+        },
+      }
     );
   } catch (error) {
     return NextResponse.json({
