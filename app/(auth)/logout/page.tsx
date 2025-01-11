@@ -2,8 +2,9 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const page = () => {
+const LogoutPage = () => {
   const router = useRouter();
   const [error, setError] = React.useState<string>("");
   const [time, setTime] = React.useState<number>(5);
@@ -29,22 +30,26 @@ const page = () => {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [router]);
 
   return (
-    <section className="w-full h-[90vh] flex items-center justify-center">
-      <div className="bg-blue-100 border border-blue-200 p-5 rounded shadow flex items-center flex-col gap-5">
-        <h1 className="text-2xl font-bold">Logout</h1>
-        <div className="space-y-3 text-center">
-          <p className="text-sm font-light text-green-500">
-            You have been logged out successfully
-          </p>
-          <p className="text-sm font-light">redirecting in {time}</p>
-          <p className="text-sm font-light text-red-500"> {error && error}</p>
-        </div>
+    <Card className="w-[400px] mx-auto mt-20">
+      <CardHeader>
+        <CardTitle>
+          Logout
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+      <div className="space-y-3 text-center">
+        <p className="text-sm font-light text-green-500">
+          You have been logged out successfully
+        </p>
+        <p className="text-sm font-light">redirecting in {time}</p>
+        <p className="text-sm font-light text-red-500"> {error && error}</p>
       </div>
-    </section>
+      </CardContent>
+      </Card>
   );
 };
 
-export default page;
+export default LogoutPage;

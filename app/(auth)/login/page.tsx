@@ -46,6 +46,11 @@ const LoginPage = () => {
         toast.success(responseData.message);
         router.push("/profile");
       }
+
+      if(responseData.status === "unverified"){
+        toast.error(responseData.message);
+        router.push("/send-verification-email");
+      }
     } catch (error) {
       console.error(error);
       toast.error("An error occurred");
@@ -54,7 +59,6 @@ const LoginPage = () => {
     }
   };
   return (
-    <section className="font-poppins flex flex-col items-center justify-center h-[91vh] md:h-[89.45vh] w-full inset-0 bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] md:[mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]">
       <div>
         <Card className="w-[350px] bg-white rounded-none p-0">
           <CardHeader className="p-0 ">
@@ -157,7 +161,6 @@ const LoginPage = () => {
           </CardHeader>
         </Card>
       </div>
-    </section>
   );
 };
 

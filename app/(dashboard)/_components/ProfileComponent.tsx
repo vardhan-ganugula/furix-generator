@@ -18,6 +18,7 @@ import axios from "axios";
 import { UserProfileDetails } from "@/types/customTypes";
 import { useFurix } from "@/hooks/furixContext";
 import { toast } from "sonner";
+import Image from "next/image";
 
 
 
@@ -64,21 +65,29 @@ const ProfileComponent = () => {
 
 
   useEffect(() => {
-    axios
-      .get("/api/v1/profile")
-      .then((res) => {
-        const newData = {
+    const fetchUserProfile = async () => {
+      try {
+        const res = await axios.get("/api/v1/profile");
+        const fetchedData = res.data.data;
+  
+        const updatedUserInfo = {
           ...userInfo,
-          ...res.data.data,
+          ...fetchedData,
         };
-        setUserInfo(newData);
-        setCoins(newData.token);
-        infoForm.reset(newData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [setCoins, infoForm]);
+  
+        setUserInfo(updatedUserInfo);
+        setCoins(fetchedData.token); 
+        infoForm.reset(updatedUserInfo); 
+      } catch (err) {
+        console.error("Error fetching user profile:", err);
+      }
+    };
+  
+    fetchUserProfile();
+    console.log("useEffect");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setUserInfo, setCoins, infoForm]);
+  
 
   return (
     <div className="border-2 border-emerald-600 p-5 rounded-xl">
@@ -86,10 +95,12 @@ const ProfileComponent = () => {
       <div className="flex p-5 gap-5 flex-col">
         <div className="justify-between flex flex-col gap-5 md:flex-row md:gap-10">
           <div className="flex items-center gap-5">
-            <img
-              src="https://thumbs.dreamstime.com/b/studio-photo-african-american-female-model-face-profile-closeup-fashionable-portrait-metis-young-woman-perfect-smooth-153607290.jpg"
+            <Image
+              src={"https://thumbs.dreamstime.com/b/studio-photo-african-american-female-model-face-profile-closeup-fashionable-portrait-metis-young-woman-perfect-smooth-153607290.jpg"}
               alt="profile"
               className="rounded-full object-cover w-[100px] h-[100px]"
+              width={100}
+              height={100}
             />
             <div>
               <h4 className="text-xl font-bold">Profile Picture</h4>

@@ -44,13 +44,19 @@ export async function POST(request:NextRequest) {
       email:user.email,
       role:user.role
     }
-    console.log(rememberMe)
+    if(!user.isVerified){
+      const response = NextResponse.json({
+        status:'unverified',
+        message:'Please verify your email'
+      })
+      return response
+    }
     const token = await jwt.sign(tokenDate, process.env.JWT_SECRET as string,{ expiresIn: rememberMe ? '7d' : '1d' });
 
     const response = NextResponse.json({
       status:'success',
       message:'Login successful',
-      token
+      token,
     })
     response.cookies.set('token',token,{
       httpOnly:true,

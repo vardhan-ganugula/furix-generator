@@ -56,7 +56,6 @@ const SignupPage = () => {
   };
 
   return (
-    <section className="font-poppins flex flex-col items-center justify-center h-[91vh] md:h-[89.45vh] w-full inset-0 bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] md:[mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]">
       <div>
         <Card className="w-[350px] bg-white rounded-none p-0">
           <CardHeader className="p-0 ">
@@ -149,7 +148,6 @@ const SignupPage = () => {
           </CardContent>
         </Card>
       </div>
-    </section>
   );
 };
 

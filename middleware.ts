@@ -1,7 +1,5 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
- 
-// This function can be marked `async` if using `await` inside
+import { NextResponse,NextRequest } from 'next/server'
+
 
 const publicURLs = [
     '/login',
@@ -14,6 +12,11 @@ const publicURLs = [
     '/api/v1/forgot-password',
     '/api/v1/reset-password',
     '/api/v1/verify-email',
+    '/verify-email',
+    '/api/v1/verify-email',
+    '/send-verification-email',
+    '/api/v1/send-verification-email',
+    
     
 ]
 

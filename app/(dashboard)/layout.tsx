@@ -2,7 +2,7 @@
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import Footer from "@/components/reusable/Footer";
 import DashboardHeader from "@/components/reusable/DashboardHeader";
-import React from "react";
+import React, { Suspense } from "react";
 import { FurixProvider } from "@/hooks/furixContext";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Image from "next/image";
@@ -29,7 +29,9 @@ const ProfileContent = ({ children }: { children: React.ReactNode }) => {
           className="absolute h-full w-full top-0 left-0 object-cover overflow-hidden"
         />
       </div>
+      <Suspense>
       {children}
+      </Suspense>
     </section>
   );
 };

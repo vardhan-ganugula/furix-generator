@@ -3,10 +3,9 @@ import connect from "@/db/dbConfig";
 import jwt from "jsonwebtoken";
 import User from "@/models/user.model";
 import { JWTtokenInfo } from "@/types/customTypes";
-connect();
 import { userInfoSchema } from "@/lib/schema/user";
-import { z } from "zod";
 
+connect();
 
 
 export async function GET(request: NextRequest) {
@@ -46,7 +45,7 @@ export async function POST(request: NextRequest) {
   }
   catch(err){
     return NextResponse.json(
-      { message: "Invalid Token", status: "error" },
+      { message: "Invalid Token", status: "error", error: err },
       { status: 401 }
     );
   }
