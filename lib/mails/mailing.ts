@@ -29,7 +29,11 @@ interface mailOptionsType {
 // Send email function
 const sendEmail = async (email: string, token: string, type: mailType) => {
   let mailOptions: mailOptionsType;
-  if(!checkEnvVariables()) return;
+  if(!checkEnvVariables()){
+    console.log('Mail credentials not provided');
+    console.table([host, port, user, pass]);
+    return;
+  }
   const transporter = nodemailer.createTransport({
     host,
     port: parseInt(port) || 465,
