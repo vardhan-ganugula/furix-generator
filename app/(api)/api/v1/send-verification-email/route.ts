@@ -69,7 +69,7 @@ export const POST = async (req: NextRequest) => {
       {
         $set: {
           verificationToken: token,
-          verificationTokenExpires: Date.now() + 15 * 60 * 1000, // 5 minutes
+          verificationTokenExpires: Date.now() + 5 * 60 * 1000, // 5 minutes
         },
       }
     );
