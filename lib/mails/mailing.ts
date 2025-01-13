@@ -1,10 +1,10 @@
 import nodemailer from "nodemailer";
 import { passwordResetEmailTemplate, verificationEmailTemplate } from "@/constants/emailTemplates";
+
 const host = process.env.MAIL_HOST;
 const port = process.env.MAIL_PORT as string;
 const user = process.env.MAIL_USER;
 const pass = process.env.MAIL_PASS;
-
 
 // checking if all the required environment variables are provided
 function checkEnvVariables() {
@@ -29,20 +29,22 @@ interface mailOptionsType {
 // Send email function
 const sendEmail = async (email: string, token: string, type: mailType) => {
   let mailOptions: mailOptionsType;
-  if(!checkEnvVariables()){
+  if (!checkEnvVariables()) {
     console.log('Mail credentials not provided');
     console.table([host, port, user, pass]);
     return;
   }
+
   const transporter = nodemailer.createTransport({
     host,
     port: parseInt(port) || 465,
-    secure: true,
+    secure: port === "465", // true for 465, false for other ports
     auth: {
       user,
       pass,
     },
   });
+
   if (type === "verify") {
     mailOptions = {
       from: `"Metron.Tech" <${user}>`,
@@ -58,12 +60,14 @@ const sendEmail = async (email: string, token: string, type: mailType) => {
       html: passwordResetEmailTemplate(token),
     };
   }
+
   // Send mail with defined transport object
-  transporter.sendMail(mailOptions, (error) => {
+  transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error(error);
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Message sent: %s", info.messageId);
     }
-    console.log("Message sent");
   });
 };
 
