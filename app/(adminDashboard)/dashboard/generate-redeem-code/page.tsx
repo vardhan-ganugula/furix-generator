@@ -30,7 +30,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {redeemCodeSchema} from "@/lib/schema/user";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "sonner";
 
 
@@ -77,8 +77,8 @@ const GenerateRedeenCode = () => {
         toast.success("Code generated successfully");
       }
     }).catch(err => {
-      const error = (err as AxiosError).response?.data;
-      console.log(error);
+      const error = axios.isAxiosError(err) ? err.response?.data.message : (err as Error).message;
+      toast.error(error);
     });
   };
 
@@ -272,7 +272,7 @@ const GenerateRedeenCode = () => {
                 return (
                   <TableRow key={data._id} className="hover:bg-black">
                     <TableCell>{data.name}</TableCell>
-                    <TableCell>{data.createdAt}</TableCell>
+                    <TableCell>{format(data.createdAt, 'PPP')}</TableCell>
                     <TableCell>{data.amount}</TableCell>
                     <TableCell>{format(data.expiryDate, 'PPP')}</TableCell>
                     <TableCell>{data.code}</TableCell>
