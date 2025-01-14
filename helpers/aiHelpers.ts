@@ -63,3 +63,14 @@ export const generateTextModel = async (prompt: string) => {
     throw new Error("Failed to generate text");
   }
 };
+
+export const streamMessage = async (reason: string) => {
+  const encoder = new TextEncoder();
+  const response = new ReadableStream({
+    start(controller) {
+      controller.enqueue(encoder.encode(reason));
+      controller.close();
+    },
+  });
+  return response;
+}

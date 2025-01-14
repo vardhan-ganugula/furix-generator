@@ -16,7 +16,7 @@ const publicURLs = [
     '/api/v1/verify-email',
     '/send-verification-email',
     '/api/v1/send-verification-email',
-    
+   
 ]
 
 
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/profile', request.nextUrl));
   }
 
-  if(!token && !publicURLs.includes(path)) {
+  if(!token && !publicURLs.includes(path) && path !== '/api/v1/deduct-tokens') {
     return NextResponse.redirect(new URL('/login', request.nextUrl));
   }
 

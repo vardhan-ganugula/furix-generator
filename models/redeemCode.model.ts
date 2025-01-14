@@ -1,8 +1,12 @@
 import { Schema, model, models } from "mongoose";
 
 const redeemCodeSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   createdBy: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: "User",
     required: true,
   },
@@ -11,7 +15,7 @@ const redeemCodeSchema = new Schema({
     required: true,
     unique: true,
   },
-  tokens: {
+  amount: {
     type: Number,
     required: true,
   },
@@ -19,16 +23,20 @@ const redeemCodeSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  expireAt: {
+  expiryDate: {
     type: Date,
     default: Date.now() + 7 * 24 * 60 * 60 * 1000,
   },
   limit: {
     type: Number,
     default: 1,
+  },
+  redeemed : {
+    type: Number,
+    default: 0,
   }
 });
 
-redeemCodeSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
+redeemCodeSchema.index({ expiryDate: 1 }, { expireAfterSeconds: 0 });
 
 export default models.RedeemCode || model("RedeemCode", redeemCodeSchema);

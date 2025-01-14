@@ -1,10 +1,7 @@
 // app/actions/generateText.js
 "use server";
-import { streamTextModel } from "../helpers/aiHelpers";
-
-
-
-
+import axios, { isAxiosError } from "axios";
+import { streamMessage, streamTextModel } from "../helpers/aiHelpers";
 
 
 export async function ContentPlanMonthly(topic: string) {
@@ -50,8 +47,17 @@ export async function PersonalizedMotivationalQuote(theme:string){
   return streamTextModel(prompt);
 }
 
-export async function BrandCaseStudy(brand: string, strategy: string){
+export async function BrandCaseStudy(token:string,brand: string, strategy: string){
   const prompt = `Write a detailed case study about how ${brand} successfully used ${strategy} to achieve results. Begin with an overview of the company and the challenge they were facing. Provide detailed information about the marketing strategy that was implemented, including the goals, target audience, tactics, and timeline. Highlight the results achieved, such as increased sales, higher engagement, or improved brand awareness. Use statistics and data to support the case study, and conclude with key takeaways for other marketers.
-  `
-  return streamTextModel(prompt);
+  `;
+  let reason = 'something went wrong';
+  try {
+    const response = await axios.post('http://localhost:3000/api/v1/deduct-tokens');
+    if(response.data.status === 'success') {
+      return streamTextModel(prompt)
+    }
+  } catch (err) {
+    reason = (isAxiosError(err)) ? err.response?.data?.message : (err as Error).message;
+    return streamMessage(reason)
+  }
 }

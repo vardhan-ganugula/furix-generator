@@ -67,3 +67,12 @@ export const resetPasswordSchema = z.object({
       { message: "Use a strong Password" }
     ),
 });
+
+
+export const redeemCodeSchema = z.object({
+    name: z.string().nonempty(),
+    amount: z.number().int().positive(),
+    expiryDate: z.date(),
+    code: z.string().min(6, { message: "Token must be at least 6 characters" }),
+    limit: z.number().int().positive(),
+  });

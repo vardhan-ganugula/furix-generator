@@ -60,7 +60,6 @@ export const POST = async (req: NextRequest) => {
 
   // send generated token to user email
   const token = crypto.randomBytes(15).toString("hex");
-  console.log(token);
   try {
     await User.updateOne(
       {
@@ -81,7 +80,7 @@ export const POST = async (req: NextRequest) => {
   }
   try {
     await sendEmail(email, token, "verify");
-    console.log(`Verification email sent to ${email} with token ${token}`);
+    console.log(`Verification email sent to ${email} with token`);
   } catch (err) {
     console.error(`Failed to send verification email to ${email}: ${(err as Error).message}`);
     return NextResponse.json({
