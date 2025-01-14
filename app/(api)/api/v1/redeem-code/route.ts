@@ -3,11 +3,11 @@ import { verifyToken } from "@/lib/jwt.lib";
 import redeemCodeModel from "@/models/redeemCode.model";
 import redeemHistoryModel from "@/models/redeemHistory.model";
 import User from "@/models/user.model";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async (res: NextResponse) => {
-  const { code } = await res.json();
-  const token = res.cookies.get("token")?.value;
+export const POST = async (req: NextRequest) => {
+  const { code } = await req.json();
+  const token = req.cookies.get("token")?.value;
   if (!code || !token || !verifyToken(token)) {
     return NextResponse.json(
       {

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import {redeemCodeSchema} from '@/lib/schema/user'
 import { verifyToken } from "@/lib/jwt.lib";
 import redeemCodeModel from "@/models/redeemCode.model";
@@ -6,7 +6,7 @@ import connect from "@/db/dbConfig";
 import User from "@/models/user.model";
 
 
-export const POST = async (res:NextResponse) => {
+export const POST = async (res:NextRequest) => {
     connect()
     const response = await res.json()
     response.expiryDate = new Date(response.expiryDate)
@@ -72,7 +72,7 @@ export const POST = async (res:NextResponse) => {
 
 }
 
-export const GET = async (res:NextResponse) => {
+export const GET = async (res:NextRequest) => {
     connect()
     const tokenCookie = res.cookies.get('token')
     const token = tokenCookie?.value
