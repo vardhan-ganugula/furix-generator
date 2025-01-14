@@ -78,8 +78,10 @@ export const POST = async (req: NextRequest) => {
       message: "Error: " + (err as Error).message,
     });
   }
+
   try {
-    await sendEmail(email, token, "verify");
+    const resp = await sendEmail(email, token, "verify");
+    console.log(resp);
     console.log(`Verification email sent to ${email} with token`);
   } catch (err) {
     console.error(`Failed to send verification email to ${email}: ${(err as Error).message}`);
@@ -88,6 +90,7 @@ export const POST = async (req: NextRequest) => {
       message: "Error: " + (err as Error).message,
     });
   }
+
   return NextResponse.json({
     status: "success",
     message: "Email sent Successfully",

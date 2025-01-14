@@ -45,6 +45,15 @@ const sendEmail = async (email: string, token: string, type: mailType) => {
     },
   });
 
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.error("Error with transporter configuration:", error);
+    } else {
+      console.log(success)
+      console.log("Server is ready to take our messages");
+    }
+  });
+
   if (type === "verify") {
     mailOptions = {
       from: `"Metron.Tech" <${user}>`,
@@ -62,13 +71,14 @@ const sendEmail = async (email: string, token: string, type: mailType) => {
   }
 
   // Send mail with defined transport object
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Message sent: %s", info.messageId);
-    }
-  });
+  try {
+    const res = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", res);
+    return res;
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return (error as Error).message
+  }
 };
 
 export default sendEmail;
