@@ -2,11 +2,11 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Skeleton } from '@/components/ui/skeleton'
-const page = () => {
+const DashboardPage = () => {
   const router = useRouter()
   useEffect(() => {
     router.push('/dashboard/profile')
-  }, [])
+  }, [router])
   return (
     <>
       <Skeleton className='w-96 h-96' />
@@ -14,4 +14,4 @@ const page = () => {
   )
 }
 
-export default page
+export default DashboardPage

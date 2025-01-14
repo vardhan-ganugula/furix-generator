@@ -2,7 +2,6 @@ import { AdminSidebar } from "@/components/AdminDashboard";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import React from "react";
-import AdminProfile from "./_components/AdminProfile";
 type Props = {
   children: React.ReactNode;
 };

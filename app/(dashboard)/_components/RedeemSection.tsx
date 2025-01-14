@@ -108,7 +108,7 @@ const RedeemSection = () => {
           </h1>
           <h1 className="text-lg font-bold">🎉Congratulations🎉</h1>
           <h2 className="text-sm flex flex-col items-center my-3 gap-3">
-            <span className="text-lg font-bold text-blue-500 border border-dashed rounded bg-blue-100 block px-3 py-1 border-blue-500">"{redeemCode}"</span> <span>applied successfully</span>
+            <span className="text-lg font-bold text-blue-500 border border-dashed rounded bg-blue-100 block px-3 py-1 border-blue-500">&quot;{redeemCode}&quot;</span> <span>applied successfully</span>
           </h2>
           <button className="w-full bg-blue-500 text-white py-2 rounded mt-5" onClick={() => {setBonusCoins(0); setShowGiftBox(false)}}>
               Ok

@@ -1,4 +1,6 @@
+'use client'
 import {EditorType} from "@/app/types/customTypes";
+import axios from "axios";
 export const streamOutput = async (
     moduleName: Function,
     editorRef: React.MutableRefObject<EditorType | null>,
@@ -15,6 +17,15 @@ export const streamOutput = async (
         text += decoder.decode(value);
         done = doneValue;
         editorRef.current?.setContent(text)
+      }
+      if(done){
+        axios.post('/api/v1/deduct-tokens', {
+          text, cost : 50
+        }).then(res => {
+          console.log(res.data)
+        }).catch(err => {
+          console.error(err)
+        })
       }
     } catch (error) {
       console.error("Error generating text:", error);

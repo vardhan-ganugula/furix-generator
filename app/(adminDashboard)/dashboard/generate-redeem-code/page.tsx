@@ -30,11 +30,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {redeemCodeSchema} from "@/lib/schema/user";
-import axios, { Axios, AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 
 
-const page = () => {
+const GenerateRedeenCode = () => {
   
 
   const form = useForm<z.infer<typeof redeemCodeSchema>>({
@@ -290,4 +290,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default GenerateRedeenCode;

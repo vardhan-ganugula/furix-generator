@@ -1,4 +1,3 @@
-import { JWTtokenInfo } from '@/types/customTypes';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 
