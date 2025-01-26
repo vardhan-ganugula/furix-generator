@@ -3,7 +3,10 @@ export function generateQuotePrompt(theme:string):string {
     return prompt;
 }
 
-export function generateCreativePrompt(topic?: string): string {
-    const prompt = `Write a creative story that inspires content creators to keep pushing through creative blocks. The story should feature a protagonist who faces a major creative challenge, such as writer's block, lack of inspiration, or self-doubt. Through perseverance and creative problem-solving, the protagonist overcomes the challenge and experiences a breakthrough. Include elements of self-discovery, motivation, and the joy of creating. The tone should be uplifting and encouraging, leaving the reader with a sense of hope and determination. The story should be engaging and relatable, resonating with content creators of all backgrounds and experience levels. The output should be a short story of at least 500 words, written in a narrative style with vivid descriptions and emotional depth. ${topic ? ` The topic is ${topic} using this topic try to create a creative story.` : ''}`;
-    return prompt;
+export function generateCreativePrompt(userInput?: string): string {
+    const basePrompt = `Write a creative story that inspires content creators to keep pushing through creative blocks. The story should feature a protagonist who faces a major creative challenge, such as writer's block, lack of inspiration, or self-doubt. Through perseverance and creative problem-solving, the protagonist overcomes the challenge and experiences a breakthrough. Include elements of self-discovery, motivation, and the joy of creating. The tone should be uplifting and encouraging, leaving the reader with a sense of hope and determination. The story should be engaging and relatable, resonating with content creators of all backgrounds and experience levels. use random names and places to make the story more engaging.`;
+
+    const userPrompt = (userInput?:string) => 
+        `${basePrompt}${userInput ? ` The topic is: ${userInput}. Using this topic, create a unique and creative story.` : ''}`;
+    return userPrompt(userInput);
 }

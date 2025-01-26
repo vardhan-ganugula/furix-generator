@@ -1,73 +1,21 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import AiCard, { AiButton } from "../_components/AiCard";
-import { toast } from "sonner";
-import { useEditorRef } from "@/hooks/useEditorRef";
 import { Textarea } from "@/components/ui/textarea";
+import useStreamApi from "@/hooks/useStreamApi";
 
 const MotivationalPage = () => {
   const [theme, setTheme] = useState<string>("");
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const editorRef = useEditorRef();
-  const onClick = async () => {
-    if (!theme) {
-      toast.error("Please fill in the required fields");
-      return;
-    }
-    try {
-      const response = await fetch("/api/ai/generate-motivational-quotes", {
-        method: "POST",
-        body: JSON.stringify({ theme }),
-      });
-      let text = "";
-      if (!response.ok) {
-        console.log(response);
-        if (response.status === 402) {
-          toast.error("Insufficient token balance");
-          return;
-        }
-        if (response.status === 404) {
-          toast.error("User not found");
-          return;
-        }
-        if (response.status === 401) {
-          toast.error("Unauthorized");
-          return;
-        }
-        throw new Error("Network response was not ok");
-      }
-      toast.success("generating response", {
-        description: "This may take a few seconds",
-        className: "bg-zinc-800 text-white",
-        action: {
-          label: "-50 Tokens",
-          onClick: () => toast.dismiss(),
-        },
-      });
-      if (buttonRef.current) {
-        buttonRef.current.disabled = true;
-      }
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
+  
+  const apiObject = {
+    endPoint: "/api/ai/generate-motivational-quotes",
+    data: {
+      theme
+    },
+  }
+  const { handleGenerate, isLoading } = useStreamApi({ buttonRef, apiObject });
 
-      while (!done) {
-        const { value, done: readerDone } = await reader?.read()!;
-        done = readerDone;
-        const chunk = decoder.decode(value);
-        text += chunk;
-        editorRef.current?.setContent(text);
-      }
-      if (buttonRef.current) {
-        buttonRef.current.disabled = false;
-      }
-      
-    } catch (error) {
-      console.log(error);
-      console.error("Error generating text:", error);
-      toast.error("Error generating text " + error);
-    }
-  };
   useEffect(() => {
     if (buttonRef.current) {
       buttonRef.current.setAttribute("disabled", "true");
@@ -97,8 +45,9 @@ const MotivationalPage = () => {
           </div>
           <div className="my-2">
             <AiButton
-              onClick={onClick}
+              onClick={handleGenerate}
               ref={buttonRef}
+              disabled={isLoading}
             >
               Generate Quotes
             </AiButton>

@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   const deduct = 50;
   const token = req.cookies.get("token")?.value;
+  const { story } = await req.json();
   if (!token) {
     return NextResponse.json(
       {
@@ -19,7 +20,7 @@ export const POST = async (req: NextRequest) => {
     );
   }
   const id = verifyToken(token).id;
-  const prompt = generateCreativePrompt('good sleep');
+  const prompt = generateCreativePrompt(story || 'unique and inspiring story' );
   try {
     const user = await User.findOne({ _id: id });
     if (!user) {
@@ -52,7 +53,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   try {
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { _id: id },
       { $inc: { token: -deduct } }
     );

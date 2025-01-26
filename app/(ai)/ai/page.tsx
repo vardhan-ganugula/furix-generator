@@ -6,7 +6,7 @@ function AiPage() {
   const router = useRouter();
   useEffect(() => {
     router.push("products");
-  }, []);
+  }, [router]);
   return <div>AiPage</div>;
 }
 

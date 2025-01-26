@@ -60,7 +60,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   try {
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { _id: id },
       { $inc: { token: -deduct } }
     );

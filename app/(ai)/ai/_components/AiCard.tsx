@@ -31,19 +31,22 @@ const AiCard = ({
     </Card>
   );
 };
+
 export const AiButton = React.forwardRef<
   HTMLButtonElement,
   {
     onClick: () => void;
     children: React.ReactNode;
     className?: string;
+    disabled?: boolean;
   }
->(function AiButton({ onClick, children, className }, btnRef) {
+>(function AiButton({ onClick, children, className, disabled }, btnRef) {
   return (
     <Button
       onClick={onClick}
       className={`mt-4 disabled:cursor-wait bg-white px-3 py-2 rounded text-black text-xs ${className} disabled:cursor-not-allowed`}
       ref={btnRef}
+      disabled = {disabled}
     >
       {children}
     </Button>
