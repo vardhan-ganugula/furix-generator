@@ -1,3 +1,5 @@
+import { JwtPayload } from "jsonwebtoken";
+
 interface socialData {
     title: string,
     url: string,
@@ -22,6 +24,13 @@ interface JWTtokenInfo{
     email: string,
     role: string
 }
+
+interface JwtPayloadInfo extends JwtPayload{
+    id: string,
+    email: string,
+    role: string
+}
+
 interface UserProfileDetails{
     username: string,
     email: string,
@@ -36,4 +45,4 @@ interface UserProfileDetails{
 }
 
 
-export type { socialData,buttonInterface, Topic, JWTtokenInfo,UserProfileDetails }
+export type { socialData,buttonInterface, Topic, JWTtokenInfo,UserProfileDetails,JwtPayloadInfo }

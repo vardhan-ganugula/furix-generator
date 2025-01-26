@@ -1,9 +1,13 @@
-import React from 'react'
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
-function page() {
-  return (
-    <div>page</div>
-  )
+function AiPage() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("products");
+  }, []);
+  return <div>AiPage</div>;
 }
 
-export default page
+export default AiPage;

@@ -74,3 +74,34 @@ export const streamMessage = async (reason: string) => {
   });
   return response;
 }
+
+
+
+export async function generateApiStream(prompt: string): Promise<ReadableStream> {
+  const encoder = new TextEncoder();
+  const { textStream } = streamText({
+      prompt,
+      model: google("gemini-1.5-flash"),
+      seed: Math.floor(Math.random() * 1000),
+      temperature: 1
+  });
+  const stream = new ReadableStream({
+      async start(controller) {
+          try {
+              for await (const text of textStream) {
+                  controller.enqueue(encoder.encode(text));
+              }
+          } catch (error) {
+              console.error("Error generating text:", error);
+              controller.error(error);
+              
+          }
+          finally {
+              controller.close();
+          }
+
+      }
+  })
+  return stream;
+}
+

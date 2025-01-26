@@ -1,23 +1,16 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 import AiCard, { AiButton } from "../_components/AiCard";
-import { toast } from "sonner";
 import { useEditorRef } from "@/hooks/useEditorRef";
-import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
-const MotivationalPage = () => {
-  const [theme, setTheme] = useState<string>("");
+const GenerateCreativeStory = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const editorRef = useEditorRef();
-  const onClick = async () => {
-    if (!theme) {
-      toast.error("Please fill in the required fields");
-      return;
-    }
+  const handleOnClick = async () => {
     try {
-      const response = await fetch("/api/ai/generate-motivational-quotes", {
+      const response = await fetch("/api/ai/creative-story-generation", {
         method: "POST",
-        body: JSON.stringify({ theme }),
       });
       let text = "";
       if (!response.ok) {
@@ -67,46 +60,21 @@ const MotivationalPage = () => {
       console.error("Error generating text:", error);
       toast.error("Error generating text " + error);
     }
+
   };
-  useEffect(() => {
-    if (buttonRef.current) {
-      buttonRef.current.setAttribute("disabled", "true");
-    }
-    if (theme.trim().length > 0) {
-      if (buttonRef.current) {
-        buttonRef.current.removeAttribute("disabled");
-      }
-    }
-  }, [theme]);
+
+
 
   return (
-    <>
-      <AiCard
-        title="Personalized Quotes"
-        description="Get personalized motivational quotes to keep you going using AI."
-      >
-        <div>
-          <div className="my-2">
-            <h2 className="text-xl font-bold">Describe your theme</h2>
-            <Textarea
-              className="border border-zinc-700 text-xs mt-2"
-              placeholder="success, perseverance, creativity"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-            ></Textarea>
-          </div>
-          <div className="my-2">
-            <AiButton
-              onClick={onClick}
-              ref={buttonRef}
-            >
-              Generate Quotes
-            </AiButton>
-          </div>
-        </div>
-      </AiCard>
-    </>
+    <AiCard
+      title="Generate Creative Story"
+      description="Use our advanced AI to craft unique and engaging stories that capture the essence of current trends. Whether you're looking for inspiration or need a complete narrative, our AI-powered tool can help you create compelling content effortlessly. Simply provide a few keywords or a brief outline, and let our AI do the rest. Perfect for writers, marketers, and anyone in need of creative content."
+    >
+      <AiButton ref={buttonRef} onClick={handleOnClick}>
+        Generate Story
+      </AiButton>
+    </AiCard>
   );
 };
 
-export default MotivationalPage;
+export default GenerateCreativeStory;

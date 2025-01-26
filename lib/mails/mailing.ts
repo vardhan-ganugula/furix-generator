@@ -36,9 +36,8 @@ const sendEmail = async (email: string, token: string, type: mailType) => {
   }
 
   const transporter = nodemailer.createTransport({
-    host,
-    port: parseInt(port) || 465,
-    secure: port === "465", // true for 465, false for other ports
+    host : 'smtp.zoho.in',
+    port: 587,
     auth: {
       user,
       pass,

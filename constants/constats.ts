@@ -62,7 +62,7 @@ export const allTopics: Array<Topic> = [
   },
   {
     title: "Creative Story Generation",
-    url: "/ai/content-story-generation",
+    url: "/ai/creative-story-generation",
     icon: Lightbulb,
     description:
       "Inspire audience with uplifting stories of overcoming challenges and finding breakthroughs.",
