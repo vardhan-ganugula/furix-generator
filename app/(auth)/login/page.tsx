@@ -21,7 +21,7 @@ import { loginSchema } from "@/lib/schema/user";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import useAuthStore, { userDetails } from "@/store/useAuthStore";
+import useAuthStore from "@/store/useAuthStore";
 
 const LoginPage = () => {
   const router = useRouter();

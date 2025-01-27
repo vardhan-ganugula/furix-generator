@@ -1,4 +1,3 @@
-import { verifyToken } from "@/lib/jwt.lib";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async(req: NextRequest) => {
@@ -6,8 +5,6 @@ export const POST = async(req: NextRequest) => {
     if(!token){
         return NextResponse.json({status: 'error', message: "No token provided"}, {status: 400});
     }
-    const details = verifyToken(token);
-    const {text, cost} = await req.json();
     try {
         // todo: Deduct tokens from user
     } catch (error) {

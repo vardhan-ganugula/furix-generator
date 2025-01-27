@@ -81,6 +81,7 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const resp = await sendEmail(email, token, "verify");
+    console.log(resp)
     console.log(`Verification email sent to ${email} with token`);
   } catch (err) {
     console.error(`Failed to send verification email to ${email}: ${(err as Error).message}`);
