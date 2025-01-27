@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import AiCard, { AiButton } from "../_components/AiCard";
 import useStreamApi from "@/hooks/useStreamApi";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +13,12 @@ const GenerateCreativeStory = () => {
     data: {story:theme},
   }
   const {handleGenerate, isLoading} = useStreamApi({buttonRef, apiObject});
+
+  useEffect(() => {
+    if(!theme || theme === "") {
+      buttonRef.current?.setAttribute("disabled", "true");
+    }
+  }, [theme ])
 
   return (
     <AiCard

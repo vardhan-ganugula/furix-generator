@@ -15,8 +15,8 @@ export async function CreativeStory(topic: string) {
   return streamTextModel(prompt);
 }
 
-export async function EmailOutreachBloggers(niche: string) {
-  const prompt = `Write an email outreach template for bloggers looking to collaborate with brands in the ${niche}. Start with a friendly greeting and a brief introduction to the blogger and their audience. Explain why the collaboration would be mutually beneficial, including details such as audience reach, engagement rates, and previous successful partnerships. Provide specific ideas for collaboration, such as sponsored posts or product reviews. Close with a call-to-action inviting the brand to discuss the opportunity further. The email should be concise, professional, and personalized to the blogger's interests and needs. The output should be a complete email template with placeholders for personalization, such as the blogger's name and blog URL. The subject line should be attention-grabbing and relevant to the collaboration offer. The output should be like this example:
+export async function EmailOutreachBloggers(niche: string, userPrompt?: string) {
+  const prompt = `Write an email outreach template for bloggers looking to collaborate with brands in the ${niche}. Start with a friendly greeting and a brief introduction to the blogger and their audience. Explain why the collaboration would be mutually beneficial, including details such as audience reach, engagement rates, and previous successful partnerships. Provide specific ideas for collaboration, such as sponsored posts or product reviews. Close with a call-to-action inviting the brand to discuss the opportunity further. The email should be concise, professional, and personalized to the blogger's interests and needs. The output should be a complete email template with placeholders for personalization, such as the blogger's name and blog URL. The subject line should be attention-grabbing and relevant to the collaboration offer. ${userPrompt} The output should be like this example:
   <h1>Subject: creative subject line</h1>
   <div>
     <p>Hi [Blogger's Name],</p>
