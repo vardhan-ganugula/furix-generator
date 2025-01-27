@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
   const deduct = 50;
   const token = req.cookies.get("token")?.value;
   const { topic } = await req.json();
-  console.log(topic);
+
   if (!token) {
     return NextResponse.json(
       {

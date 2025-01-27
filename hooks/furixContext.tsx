@@ -7,7 +7,7 @@ import {
   useEffect,
 } from "react";
 import axios from "axios";
-
+import useAuthStore from "@/store/useAuthStore";
 
 
 interface FurixContextType {
@@ -24,6 +24,7 @@ const FurixProvider = ({ children }: { children: ReactNode }) => {
   const [coins, setCoins] = useState<number>(3000);
   const [category, setCategory] = useState<string>("all");
   const [isLoading, setLoading] = useState<boolean>(true);
+  const {setDetails} = useAuthStore();
   const FurixOutput = {
     coins,
     setCoins,
@@ -37,6 +38,7 @@ const FurixProvider = ({ children }: { children: ReactNode }) => {
     try {
       const responseData = await axios.get("/api/v1/profile");
       setCoins(responseData.data.data.token);
+      setDetails(responseData.data.data);
     } catch (error) {
       console.log(error);
     }

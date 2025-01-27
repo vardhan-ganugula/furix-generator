@@ -6,19 +6,20 @@ import { populateCategories, allTopics } from "@/constants/constats";
 import { Input } from "@/components/ui/input"
 import TopicCard from "@/components/smallComponents/TopicCard";
 import CategoryCard from "@/components/smallComponents/CategoryCard";
+import useAuthStore from "@/store/useAuthStore";
 
 function ProductPageMain() {
 
   const {category} = useFurix();
   const [search, setSearch] = useState('');
-  
+  const { userDetails } = useAuthStore();
   
   return (
-    <main>
-      <div className="min-h-screen bg-[#fafafa]">
+    <main className="w-full bg-[#fafafa] flex justify-center">
+      <div className="min-h-screen lg:w-2/3">
         <section className="flex items-center flex-col py-10 ">
           <h4 className="text-2xl font-bold mt-10 font-roboto-mono text-center px-4">
-            🎉 Vardhan, So what exactly do you have in mind?
+            🎉 {userDetails?.username}, So what exactly do you have in mind?
           </h4>
           <p className="mt-5 text-zinc-400 font-poppins px-5 text-center text-xs md:text-sm">
             Begin with selecting the content type from the option below
@@ -31,11 +32,11 @@ function ProductPageMain() {
           </div>
         </section>
         <section className="w-full flex flex-col items-center">
-          <div className="lg:w-[1050px]">
+          <div className="lg:w-full">
             <h2 className="font-bold text-lg md:text-xl font-poppins text-zinc-700 pl-4">
               Popular Category
             </h2>
-            <div className="md:flex gap-5 hidden align-baseline px-3 items-stretch">
+            <div className="md:flex gap-5 hidden align-baseline px-3 items-stretch justify-center">
               {populateCategories.map((category) => {
                 return (
                   <CategoryCard
@@ -62,7 +63,7 @@ function ProductPageMain() {
               })}
             </div>
           </div>
-          <div className="md:min-w-96 mt-5">
+          <div className="w-full mt-5">
             <div className="font-bold space-x-20 text-lg md:text-xl font-poppins text-zinc-700 flex items-center justify-between w-full px-4">
               <h2>
                 {category === 'all' ? 'All Topics' : `Topics in ${category}`}

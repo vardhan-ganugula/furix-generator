@@ -13,11 +13,11 @@ import Image from "next/image";
 import Coins  from "@/public/star.png";
 import { useFurix } from "@/hooks/furixContext";
 import appName from "@/constants/settings";
-
+import useAuthStore from "@/store/useAuthStore";
 
 function DashboardHeader() {
   const {coins, isLoading} = useFurix();
-
+  const { userDetails } = useAuthStore();
   return (
     <>
       <header className="shadow border-b-2 border-zinc-400/20 w-full py-2 flex justify-around items-center bg-white text-black dark:bg-zinc-900 dark:text-white">
@@ -31,7 +31,7 @@ function DashboardHeader() {
               <span className="font-roboto-mono text-sm font-semibold">{isLoading ? 'loading' : coins } </span>
             </div>
             <DropdownMenu>
-              <DropdownMenuTrigger className="font-bold">Vardhan</DropdownMenuTrigger>
+              <DropdownMenuTrigger className="font-bold">{userDetails?.username}</DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />

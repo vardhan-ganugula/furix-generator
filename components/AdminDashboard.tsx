@@ -38,7 +38,6 @@ export function AdminSidebar() {
     },
   ];
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <Sidebar className="dark">
       <SidebarContent>

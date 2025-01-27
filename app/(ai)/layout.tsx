@@ -62,7 +62,6 @@ function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
                       toast.error("Table is not supported in PDF");
                       return;
                     }
-                    console.log(content);
                     pdfDownloader(content);
                   }}
                 >

@@ -17,13 +17,14 @@ export async function POST(request:NextRequest) {
       message:parsedValse.error.errors[0].message
     })
   }
+  let user;
   try {
     
     const email = userDetails.email.trim().toLowerCase();
     const password = userDetails.password;
     const rememberMe = userDetails.rememberMe;
 
-    const user = await User.findOne({email});
+    user = await User.findOne({email});
     if(!user){
       return NextResponse.json({
         status:'error',
@@ -69,7 +70,11 @@ export async function POST(request:NextRequest) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      {status:'error',message:'An error occured'},
+      {status:'error',message:'An error occured', user : {
+        email: user.email,
+        userName: user.username,
+        tokens: user.token,
+      }},
     )
   }
   

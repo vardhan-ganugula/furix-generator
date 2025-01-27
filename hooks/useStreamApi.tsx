@@ -30,7 +30,7 @@ const useStreamApi = ({
       });
       let text = "";
       if (!response.ok) {
-        console.log(response);
+
         if (response.status === 402) {
           toast.error("Insufficient token balance");
           return;

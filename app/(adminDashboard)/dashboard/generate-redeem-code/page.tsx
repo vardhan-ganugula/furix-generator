@@ -84,7 +84,6 @@ const GenerateRedeenCode = () => {
 
   useEffect(() => {
     axios.get("/api/v1/generate-redeem-code").then((res) => {
-      console.log(res.data);
       setTableData(res.data.data);
     });
   }, []);

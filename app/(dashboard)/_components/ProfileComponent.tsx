@@ -49,7 +49,6 @@ const ProfileComponent = () => {
   });
 
   const handleProfileUpdate = (data: z.infer<typeof userInfoSchema>) => {
-    console.log(data)
     axios
       .post("/api/v1/profile", data)
       .then((res) => {
@@ -84,7 +83,6 @@ const ProfileComponent = () => {
     };
   
     fetchUserProfile();
-    console.log("useEffect");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setUserInfo, setCoins, infoForm]);
   

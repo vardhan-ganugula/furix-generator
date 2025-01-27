@@ -10,7 +10,6 @@ export const POST = async(req: NextRequest) => {
     const {text, cost} = await req.json();
     try {
         // todo: Deduct tokens from user
-        console.log(details, text, cost)
     } catch (error) {
         return NextResponse.json({status: 'error', message: "Error deducting tokens", error: (error as Error).message}, {status: 400});
         
