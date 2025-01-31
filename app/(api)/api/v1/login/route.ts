@@ -58,6 +58,11 @@ export async function POST(request:NextRequest) {
       status:'success',
       message:'Login successful',
       token,
+      user : {
+        email: user.email,
+        userName: user.username,
+        tokens: user.token,
+      }
     })
     response.cookies.set('token',token,{
       httpOnly:true,
@@ -70,11 +75,7 @@ export async function POST(request:NextRequest) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      {status:'error',message:'An error occured', user : {
-        email: user.email,
-        userName: user.username,
-        tokens: user.token,
-      }},
+      {status:'error',message:'An error occured'},
     )
   }
   

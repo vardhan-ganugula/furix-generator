@@ -46,7 +46,7 @@ const LoginPage = () => {
 
       if (responseData.status === "success") {
         toast.success(responseData.message);
-        setDetails(responseData.data.user);
+        setDetails(responseData.user);
         router.push("/profile");
       }
 
