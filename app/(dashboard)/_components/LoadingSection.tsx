@@ -4,7 +4,7 @@ import React from 'react'
 
 const LoadingSection = () => {
   return (
-    <Skeleton className="w-full h-20" />
+    <Skeleton className="w-full h-40" />
   )
 }
 

@@ -7,7 +7,7 @@ import { FurixProvider } from "@/hooks/furixContext";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Image from "next/image";
 import appName from "@/constants/settings";
-import background from "@/public/background.jpg";
+import background from "@/public/background.webp";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Menu, XIcon } from "lucide-react";
 

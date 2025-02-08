@@ -26,8 +26,8 @@ const loginSchema = z.object({
 });
 
 const userInfoSchema = z.object({
-  firstName: z.string().min(3),
-  lastName: z.string().min(3),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
   email: z.string().email(),
   username: z.string().min(3),
   currentPassword: z

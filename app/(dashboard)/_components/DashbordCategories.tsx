@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const DashbordCategories = ({ currentTab }: { currentTab: string }) => {
-  const categories = ["profile", "redeem", "billing", "support"];
+  const categories = ["profile", "redeem", ];
   return (
     <div className="flex justify-center items-center gap-2 md:gap-5 w-full text-xs">
       {categories.map((category, index) => (
