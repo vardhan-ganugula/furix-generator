@@ -83,7 +83,8 @@ export async function generateApiStream(prompt: string): Promise<ReadableStream>
       prompt,
       model: google("gemini-1.5-flash"),
       seed: Math.floor(Math.random() * 1000),
-      temperature: .8
+      temperature: .6,
+      maxTokens: 8000
   });
   const stream = new ReadableStream({
       async start(controller) {

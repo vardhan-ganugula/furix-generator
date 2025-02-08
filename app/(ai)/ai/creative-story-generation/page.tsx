@@ -17,6 +17,8 @@ const GenerateCreativeStory = () => {
   useEffect(() => {
     if(!theme || theme === "") {
       buttonRef.current?.setAttribute("disabled", "true");
+    }else{
+      buttonRef.current?.removeAttribute("disabled");
     }
   }, [theme ])
 
