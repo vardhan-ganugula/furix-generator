@@ -16,10 +16,10 @@
 # next.js
 /.next/
 /out/
-.next
+/.next
 # production
 /build
-
+.next/
 # misc
 .DS_Store
 *.pem
@@ -44,3 +44,4 @@ app\(testing)\*
 app/testing/
 smtp.conf
 test*
+.next/trace
