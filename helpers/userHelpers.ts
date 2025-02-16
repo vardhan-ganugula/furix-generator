@@ -2,6 +2,9 @@ import User from "@/models/user.model";
 import userHistoryModel from "@/models/userHistory.model";
 import { verifyToken } from "@/lib/jwt.lib";
 import { NextRequest } from "next/server";
+import connect from "@/db/dbConfig"; 
+
+connect();
 
 export const authenticateUser = async (req: NextRequest) => {
   const token = req.cookies.get("token")?.value;

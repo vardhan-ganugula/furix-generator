@@ -27,7 +27,7 @@ const BloggerOutreachEmail = () => {
     return (
       <>
         <AiCard
-          title="Content Plan Monthly"
+          title="Bloggers Outreach Email"
           description="This prompt requests a concise email outreach template for bloggers in a specific niche. The email should include a friendly greeting, blogger introduction, collaboration benefits, specific partnership ideas, and a call-to-action. The template must be professional, personalized, and include placeholders for easy customization, with an engaging subject line tailored to the collaboration offer.
            "
         >

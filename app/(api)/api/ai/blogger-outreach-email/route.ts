@@ -1,5 +1,6 @@
 import { EmailOutreachBloggers } from "@/constants/prompts";
 import { generateApiStream } from "@/helpers/aiHelpers";
+import { saveUserHistory } from "@/helpers/userHelpers";
 import { verifyToken } from "@/lib/jwt.lib";
 import User from "@/models/user.model";
 import { NextRequest, NextResponse } from "next/server";
@@ -72,7 +73,16 @@ export const POST = async (req: NextRequest) => {
     );
   }
 
-  const response = await generateApiStream(prompt);
+  const response = await generateApiStream(prompt, async (responseText) => {
+      console.log("Saving history...");
+      await saveUserHistory(
+        id,
+        responseText,
+        "/ai/blogger-outreach-email",
+        deduct,
+        "Bloggers Outreach Email"
+      );
+    });
 
   return new NextResponse(response, {
     headers: {

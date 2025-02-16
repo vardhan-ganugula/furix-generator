@@ -45,6 +45,7 @@ export const POST = async (req: NextRequest) => {
     userDetails = await verifyToken(token);
     console.log(userDetails.id);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         status: "error",
@@ -63,6 +64,7 @@ export const POST = async (req: NextRequest) => {
       { new: true }
     ).select("avatar");
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       status: "error",
       msg: "unable to update profile pic",
