@@ -21,7 +21,6 @@ const userHistorySchema = new Schema({
     },
     tokens: {
         type: Number,
-        required: true,
         default: 50
     },
     date: {

@@ -20,11 +20,9 @@ import { useFurix } from "@/hooks/furixContext";
 import { toast } from "sonner";
 import Image from "next/image";
 
-
-
 const ProfileComponent = () => {
   const { setCoins } = useFurix();
-
+  const [profileUrl, setProfileUrl] = React.useState<string>("");
   const [userInfo, setUserInfo] = React.useState<UserProfileDetails>({
     firstName: "",
     lastName: "",
@@ -62,6 +60,40 @@ const ProfileComponent = () => {
       });
   };
 
+  const handleProfilePicUpdate = async (event: React.FormEvent) => {
+    event.preventDefault();
+    
+    const form = event.currentTarget as HTMLFormElement;
+    const profilePic = (form.elements.namedItem("profilePic") as HTMLInputElement).files?.[0];
+    if (!profilePic || profilePic.size === 0) {
+      toast.error("Please select a profile picture before uploading.");
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(profilePic);
+    fileReader.onload = () => {
+      const result = fileReader.result as string;
+      try{
+        axios.post("/api/v1/update-profile-pic", {profilePic: result})
+        .then((res) => {
+          if(res.data.status === "success"){
+            toast.success("Profile Picture updated successfully")
+            setProfileUrl(res.data.data.profilePicUrl);
+            console.log(res.data.data.profilePicUrl);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Unable to update the profile picture");
+        });
+      }catch(err){
+        console.log(err);
+        toast.error("Unable to update the profile picture");
+      }
+    };
+
+    
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -94,7 +126,7 @@ const ProfileComponent = () => {
         <div className="justify-between flex flex-col gap-5 md:flex-row md:gap-10">
           <div className="flex items-center gap-5">
             <Image
-              src={userInfo.avatar}
+              src={profileUrl || userInfo.avatar}
               alt="profile"
               className="rounded-full object-cover w-[100px] h-[100px]"
               width={100}
@@ -106,13 +138,14 @@ const ProfileComponent = () => {
             </div>
           </div>
           <div className="w-2/7 flex-shrink flex-grow-0">
-            <form className="space-x-3 text-xs">
+            <form className="space-x-3 text-xs" onSubmit={handleProfilePicUpdate}>
               <input
                 type="file"
                 accept="image/*"
                 id="profile-file"
                 className=""
                 hidden
+                name="profilePic"
               />
               <label
                 htmlFor="profile-file"

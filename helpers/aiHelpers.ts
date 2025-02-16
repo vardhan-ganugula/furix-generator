@@ -77,8 +77,12 @@ export const streamMessage = async (reason: string) => {
 
 
 
-export async function generateApiStream(prompt: string): Promise<ReadableStream> {
+export async function generateApiStream(
+  prompt: string,
+  onComplete?: (text:string) => void
+): Promise<ReadableStream> {
   const encoder = new TextEncoder();
+  let responseText= '';
   const { textStream } = streamText({
       prompt,
       model: google("gemini-1.5-flash"),
@@ -90,6 +94,7 @@ export async function generateApiStream(prompt: string): Promise<ReadableStream>
       async start(controller) {
           try {
               for await (const text of textStream) {
+                  responseText += text;
                   controller.enqueue(encoder.encode(text));
               }
           } catch (error) {
@@ -99,6 +104,9 @@ export async function generateApiStream(prompt: string): Promise<ReadableStream>
           }
           finally {
               controller.close();
+              if (onComplete) {
+                onComplete(responseText);
+              }
           }
 
       }

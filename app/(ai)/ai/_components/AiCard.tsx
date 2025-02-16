@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import {LoaderCircle} from 'lucide-react'
 import {
   Card,
   CardContent,
@@ -48,7 +49,12 @@ export const AiButton = React.forwardRef<
       ref={btnRef}
       disabled = {disabled}
     >
+      <>
+
+      {disabled && <LoaderCircle className="w-4 h-4 animate-spin" />}
+
       {children}
+      </>  
     </Button>
   );
 });

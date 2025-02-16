@@ -98,7 +98,7 @@ export function AppSidebar() {
                   <SidebarGroupContent>
                     <SidebarMenu>
                       <SidebarMenuItem>
-                        <Link href="/social-media">
+                        <Link href="/ai/personalized-motivational-quotes">
                           <SidebarMenuButton>
                             <LightbulbIcon />
                             <span>Motivational Quotes</span>
@@ -106,7 +106,7 @@ export function AppSidebar() {
                         </Link>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
-                        <Link href="/social-media">
+                        <Link href="/ai/creative-story-generation">
                           <SidebarMenuButton>
                             <WandSparklesIcon />
                             <span>Content Creation</span>
@@ -132,7 +132,7 @@ export function AppSidebar() {
                   <SidebarGroupContent>
                     <SidebarMenu>
                       <SidebarMenuItem>
-                        <Link href="/content-plan-daily">
+                        <Link href="/ai/content-plan-monthly">
                           <SidebarMenuButton>
                             <NotebookPenIcon />
                             <span>Content Plan Monthly</span>
@@ -140,7 +140,7 @@ export function AppSidebar() {
                         </Link>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
-                        <Link href="/content-plan-daily">
+                        <Link href="/ai/social-media-calendar">
                           <SidebarMenuButton>
                             <WandSparklesIcon />
                             <span>Social Media Calender</span>
