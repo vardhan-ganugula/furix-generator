@@ -7,7 +7,7 @@ export const POST = async (req: NextRequest) => {
   try {
     const { brand, strategy } = await req.json();
     if (!brand || !strategy) {
-      return NextResponse.json({ status: "error", message: " insufficient parameters" }, { status: 404 });
+      return NextResponse.json({ status: "error", message: "insufficient parameters" }, { status: 404 });
     }
 
     const { userId } = await authenticateUser(req);

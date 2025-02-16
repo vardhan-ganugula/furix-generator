@@ -1,47 +1,35 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { BrandCaseStudy } from "@/actions/ai";
-import { useEditorRef } from "@/hooks/useEditorRef";
-import { streamOutput } from "@/helpers/streamHelpers";
 import AiCard,{AiButton} from "../_components/AiCard";
+import useStreamApi from "@/hooks/useStreamApi";
 
-// Removed dynamic import for pdfDownloader
 
 function Page() {
   const [brandName, setBrandname] = useState<string>("");
   const [strategy, setStrategy] = useState<string>("");
-  const editorRef = useEditorRef();
-  const btnRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const handleGenerateCaseStudy = () => {
-    if (!brandName || !strategy) {
-      toast("Please fill in the required fields");
-      return;
+  const apiObject = {
+    endPoint: "/api/ai/generate-case-study",
+    data: {
+      brand: brandName, strategy
+    },
+  }
+  const { handleGenerate, isLoading } = useStreamApi({ buttonRef, apiObject });
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.setAttribute("disabled", "true");
     }
-
-    if (btnRef.current) {
-      btnRef.current.disabled = true;
-    }
-
-    toast("Generating case study...", {
-      description: "This may take a few seconds",
-      className: "bg-zinc-800 text-white",
-      action: {
-        label: "-50 Tokens",
-        onClick: () => toast.dismiss(),
-      },
-    });
-    streamOutput(BrandCaseStudy, editorRef, brandName, strategy);
-    setTimeout(() => {
-      if (btnRef.current) {
-        btnRef.current.disabled = false;
+      if (brandName.trim().length > 0 && strategy.trim().length > 0) {
+        if (buttonRef.current) {
+          buttonRef.current.removeAttribute("disabled");
+        }
       }
-    }, 5000);
-  };
+    }, [brandName, strategy]);
 
   return (
     <>
@@ -78,8 +66,9 @@ function Page() {
           </div>
         </div>
         <AiButton
-          onClick={handleGenerateCaseStudy}
-          ref={btnRef}
+          onClick={handleGenerate}
+          ref={buttonRef}
+          disabled={isLoading}
         >
           Generate Case Study
         </AiButton>
