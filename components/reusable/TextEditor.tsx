@@ -196,7 +196,7 @@ const TextEditor = forwardRef( function TextEditor({ initialContent }: {initialC
     <div className="relative">
 
       <MenuBar editor={editor} />
-      <div className="max-h-[78vh] overflow-y-auto mt-5 custom_thumb">
+      <div className="max-h-screen overflow-y-auto mt-5 custom_thumb w-full">
         <EditorContent editor={editor} />
       </div>
     </div>
