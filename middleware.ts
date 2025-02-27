@@ -27,9 +27,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/profile', request.nextUrl));
   }
 
-  if(!token && !publicURLs.includes(path) && path !== '/api/v1/deduct-tokens') {
-    return NextResponse.redirect(new URL('/login', request.nextUrl));
+  if (!token && !publicURLs.includes(path) && path !== '/api/v1/deduct-tokens') {
+    return NextResponse.rewrite(new URL('/login', request.nextUrl));
   }
+  
 
   return NextResponse.next();
 }

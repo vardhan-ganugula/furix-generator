@@ -64,11 +64,14 @@ export async function POST(request:NextRequest) {
         tokens: user.token,
       }
     })
-    response.cookies.set('token',token,{
-      httpOnly:true,
-      secure:true,
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: true,
       expires: new Date(Date.now() + (rememberMe ? 604800000 : 86400000)),
-      sameSite:'strict',});
+      sameSite: 'strict',
+      path: '/',
+    });
+    
 
     return response;
 
