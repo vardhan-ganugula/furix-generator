@@ -38,7 +38,6 @@
     "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "fabric": "^6.5.3",
     "html2pdf.js": "^0.10.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.465.0",
