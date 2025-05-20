@@ -50,7 +50,7 @@ function Page() {
       </div>
       <div className="flex gap-5 items-center">
         <AiButton onClick={handleGenerate} ref={buttonRef} disabled={isLoading}>
-          Generate Quotes
+          Generate Calendar
         </AiButton>
         <Button
           className="mt-4 text-xs"
